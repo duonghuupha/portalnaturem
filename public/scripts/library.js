@@ -19,21 +19,6 @@ $(function(){
           formatCurrency($(this));
         }
     });
-    $('#list_notify_modal').load(baseUrl + '/notify/list_notify_modal');
-    ///////////////////////////////////////////////////////////////
-    $.getJSON(baseUrl + '/notify/total_notify', function(data){
-        //console.log(data);
-        $('#total_notify').text(data);
-    });
-    ////////////////////////////////////////////////////////////////////
-    if(url != 'index/login' && userid != 1 && is_change == 0 && url != 'profile'){
-        window.location.href = baseUrl + '/profile/update_password';
-    }
-    //////////////////////////////////////////////////////////////////////
-    setInterval(function(){
-        load_total_notify();
-    }, 5000);
-    ///////////////////////////////////////////////////////////////////////////
 });
 
 function style_option(value){
