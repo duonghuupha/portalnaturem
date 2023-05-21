@@ -1,6 +1,3 @@
-<?php
-$userid = $this->_Info[0]['id']; $role = $this->_Info[0]['group_role_id'];
-?>
 <div id="sidebar" class="sidebar responsive ace-save-state sidebar-fixed">
     <div class="sidebar-shortcuts" id="sidebar-shortcuts">
         <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
@@ -32,81 +29,62 @@ $userid = $this->_Info[0]['id']; $role = $this->_Info[0]['group_role_id'];
             </a>
             <b class="arrow"></b>
         </li>
-    <!------------------------------------Danh muc----------------------------------------->
-        <?php
-        if($userid == 1){
-        ?>
         <li class="hover">
-            <a href="#" class="dropdown-toggle">
+            <a href="<?php echo URL.'/category' ?>">
                 <i class="menu-icon fa fa-list"></i>
-                <span class="menu-text">
-                    Danh mục
-                </span>
-                <b class="arrow fa fa-angle-down"></b>
+                <span class="menu-text"> Danh mục </span>
             </a>
             <b class="arrow"></b>
-            <ul class="submenu">
-                <li class="hover">
-                    <a href="<?php echo URL.'/categories' ?>">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        Dùng chung
-                    </a>
-                    <b class="arrow"></b>
-                </li>
-                <li class="hover">
-                    <a href="<?php echo URL.'/physical_room' ?>">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        Phòng "vật lý" 
-                    </a>
-                    <b class="arrow"></b>
-                </li>
-                <li class="hover">
-                    <a href="<?php echo URL.'/department' ?>">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        Phòng ban / Lớp học
-                    </a>
-                    <b class="arrow"></b>
-                </li>
-            </ul>
         </li>
-        <?php
-        }
-        $jsonObj  = $this->_Data->get_menu_via_user($this->_Info[0]['id'], $role, 0);
-        foreach($jsonObj as $row_0){
-            $json_sub  = $this->_Data->get_menu_via_user($this->_Info[0]['id'], $role, $row_0['id']);
-            $span = (count($json_sub) > 0 && $row_0['is_submenu'] == 0) ? '<b class="arrow fa fa-angle-down"></b>' : '';
-            $class = (count($json_sub) > 0 && $row_0['is_submenu'] == 0) ? 'class="dropdown-toggle"' : ''
-        ?>
         <li class="hover">
-            <a href="<?php echo ($row_0['link'] == '#') ? '#' : URL.'/'.$row_0['link'] ?>" <?php echo $class ?>>
-                <i class="menu-icon fa fa-<?php echo $row_0['icon'] ?>"></i>
-                <span class="menu-text">
-                    <?php echo $row_0['title'] ?>
-                </span>
-                <?php echo $span; ?>
+            <a href="<?php echo URL.'/menu' ?>">
+                <i class="menu-icon fa fa-tasks"></i>
+                <span class="menu-text"> Menu </span>
             </a>
             <b class="arrow"></b>
-            <?php
-            if(count($json_sub) > 0 && $row_0['is_submenu'] == 0){
-                echo '<ul class="submenu">';
-                foreach($json_sub as $row_1){
-                ?>
-                <li class="hover">
-                    <a href="<?php echo ($row_1['link'] == '#') ? '#' : URL.'/'.$row_1['link'] ?>">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        <?php echo $row_1['title'] ?>
-                    </a>
-                    <b class="arrow"></b>
-                </li>
-                <?php
-                }
-                echo '</ul>';
-            }
-            ?>
         </li>
-        <?php
-        }
-        ?>
+        <li class="hover">
+            <a href="<?php echo URL.'/blogs' ?>">
+                <i class="menu-icon fa fa-copy"></i>
+                <span class="menu-text"> Blogs </span>
+            </a>
+            <b class="arrow"></b>
+        </li>
+        <li class="hover">
+            <a href="<?php echo URL.'/products' ?>">
+                <i class="menu-icon fa fa-laptop"></i>
+                <span class="menu-text"> Sản phẩm </span>
+            </a>
+            <b class="arrow"></b>
+        </li>
+        <li class="hover">
+            <a href="<?php echo URL.'/orders' ?>">
+                <i class="menu-icon fa fa-shopping-cart"></i>
+                <span class="menu-text"> Đơn hàng </span>
+            </a>
+            <b class="arrow"></b>
+        </li>
+        <li class="hover">
+            <a href="<?php echo URL.'/maketing' ?>">
+                <i class="menu-icon fa fa-gift"></i>
+                <span class="menu-text"> Maketing </span>
+            </a>
+            <b class="arrow"></b>
+        </li>
+        <li class="hover">
+            <a href="<?php echo URL.'/decoration' ?>">
+                <i class="menu-icon fa fa-crop"></i>
+                <span class="menu-text"> Giao diện </span>
+            </a>
+            <b class="arrow"></b>
+        </li>
+        <li class="hover">
+            <a href="<?php echo URL.'/setting' ?>">
+                <i class="menu-icon fa fa-gear"></i>
+                <span class="menu-text"> Cài đặt </span>
+            </a>
+            <b class="arrow"></b>
+        </li>
     </ul><!-- /.nav-list -->
 
     <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">

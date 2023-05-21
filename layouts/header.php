@@ -1,21 +1,9 @@
-<?php
-if(!isset($_SESSION['data'])){
-    header("Location: ".URL.'/index/logout');
-}
-$info = $_SESSION['data'];
-if(isset($_REQUEST['url'])){
-	$arr_url = explode("/", $_REQUEST['url']);
-	$url = $arr_url[0];
-}else{
-	$url = 'index';
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
-		<title>Trường THCS Long Biên - Quận Long Biên</title>
+		<title>Naturem :: System manger</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
 		<link rel="stylesheet" href="<?php echo URL ?>/styles/css/roboto.css" />
@@ -37,11 +25,8 @@ if(isset($_REQUEST['url'])){
 		<link rel="shortcut icon" href="<?php echo URL ?>/styles/images/Logo.png" />
 		<script src="<?php echo URL ?>/styles/js/jquery-2.1.4.min.js"></script>
 		<script src="<?php echo URL ?>/styles/js/ace-extra.min.js"></script>
-		<script src="<?php echo URL ?>/styles/js/html2canvas.js"></script>
 		<script>
-			var baseUrl = '<?php echo URL ?>', is_change = <?php echo $this->_Info[0]['is_change'] ?>;
-			var url = '<?php echo $url ?>', year_title = '<?php echo $_SESSION['year'][0]['title'] ?>';
-			var yearid = <?php echo $_SESSION['year'][0]['id'] ?>, userid = <?php echo  $info[0]['id'] ?>;
+			var baseUrl = '<?php echo URL ?>';
 		</script>
 		<script src="<?php echo URL ?>/public/scripts/library.js"></script>
 	</head>
