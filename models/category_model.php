@@ -8,7 +8,7 @@ class Category_Model extends Model{
         $result = array();
         $query = $this->db->query("SELECT COUNT(*) AS Total FROM tbl_category WHERE title LIKE '%$q%'");
         $row = $query->fetchAll();
-        $query = $this->db->query("SELECT id, title, image, description, active FROM tbl_category
+        $query = $this->db->query("SELECT id, title, image, description, active, code FROM tbl_category
                                     WHERE title LIKE '%$q%' ORDER BY id DESC LIMIT $offset, $rows");
         $result['total'] = $row[0]['Total'];
         $result['rows']  = $query->fetchAll();
@@ -25,9 +25,19 @@ class Category_Model extends Model{
         return $query;
     }
 
+    function updateObj_by_code($code, $data){
+        $query = $this->update("tbl_category", $data, "code = $code");
+        return $query;
+    }
+
     function delObj($id){
         $query = $this->delete("tbl_category", "id = $id");
         return $query;
+    }
+///////////////////////////////////////////////////////////////////////////////////////////////////
+    function get_info($id){
+        $query = $this->db->query("SELECT * FROM tbl_category WHERE id = $id");
+        return $query->fetchAll();
     }
 }
 ?>
