@@ -5,7 +5,12 @@ class Other_Model extends Model{
     }
 
     function get_combo_cate(){
-        $query = $this->db->query("SELLECT id, title FROM tbl_category WHERE active = 1");
+        $query = $this->db->query("SELECT id, title FROM tbl_category WHERE active = 1");
+        return $query->fetchAll();
+    }
+
+    function get_menu_parent(){
+        $query = $this->db->query("SELECT id, title FROM tbl_menu WHERE active = 1 AND parent_id = 0");
         return $query->fetchAll();
     }
 }

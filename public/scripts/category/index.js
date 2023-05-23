@@ -35,7 +35,7 @@ function save(){
 }
 
 function search(){
-    var q = $('#title_s').val();
+    var q = $('#nav-search-input').val();
     keyword = (q.length != 0) ? q.replaceAll(" ", "$", 'g') : '';
     $('#list_data').load(baseUrl + '/category/json?page=1&q='+keyword);
 }
