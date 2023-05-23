@@ -15,6 +15,11 @@ class Blogs_Model extends Model{
         return $result;
     }
 
+    function get_info($id){
+        $query = $this->db->query("SELECT * FROM tbl_content WHERE id = $id");
+        return $query->fetchAll();
+    }
+
     function addObj($data){
         $query = $this->insert("tbl_content", $data);
         return $query;

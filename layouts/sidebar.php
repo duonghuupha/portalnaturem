@@ -1,16 +1,16 @@
 <div id="sidebar" class="sidebar responsive ace-save-state sidebar-fixed">
     <div class="sidebar-shortcuts" id="sidebar-shortcuts">
         <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-            <button class="btn btn-success">
+            <button class="btn btn-success" onclick="window.location.href='<?php echo URL ?>'">
                 <i class="ace-icon fa fa-signal"></i>
             </button>
-            <button class="btn btn-info">
+            <button class="btn btn-info" onclick="window.location.href='<?php echo URL ?>'">
                 <i class="ace-icon fa fa-pencil"></i>
             </button>
-            <button class="btn btn-warning">
+            <button class="btn btn-warning" onclick="window.location.href='<?php echo URL ?>'">
                 <i class="ace-icon fa fa-users"></i>
             </button>
-            <button class="btn btn-danger">
+            <button class="btn btn-danger" onclick="window.location.href='<?php echo URL ?>'">
                 <i class="ace-icon fa fa-cogs"></i>
             </button>
         </div>
@@ -82,6 +82,13 @@
             <a href="<?php echo URL.'/setting' ?>">
                 <i class="menu-icon fa fa-gear"></i>
                 <span class="menu-text"> Cài đặt </span>
+            </a>
+            <b class="arrow"></b>
+        </li>
+        <li class="hover">
+            <a href="<?php echo URL.'/users' ?>">
+                <i class="menu-icon fa fa-users"></i>
+                <span class="menu-text"> Quản lý người dùng </span>
             </a>
             <b class="arrow"></b>
         </li>
