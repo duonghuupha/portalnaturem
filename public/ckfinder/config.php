@@ -65,7 +65,7 @@ $config['images'] = array(
 $config['backends'][] = array(
     'name'         => 'default',
     'adapter'      => 'local',
-    'baseUrl'      => 'http://portal.naturem.us/public/filemedia/images/',
+    'baseUrl'      => 'http://portalnaturem:81/public/images/blogs',
 //  'root'         => '', // Can be used to explicitly set the CKFinder user files directory.
     'chmodFiles'   => 0777,
     'chmodFolders' => 0755,
@@ -88,7 +88,7 @@ $config['resourceTypes'][] = array(
 
 $config['resourceTypes'][] = array(
     'name'              => 'Images',
-    'directory'         => 'images',
+    'directory'         => 'ckeditor',
     'maxSize'           => 0,
     'allowedExtensions' => 'bmp,gif,jpeg,jpg,png',
     'deniedExtensions'  => '',

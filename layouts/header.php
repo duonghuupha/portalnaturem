@@ -29,6 +29,9 @@
 			var baseUrl = '<?php echo URL ?>';
 		</script>
 		<script src="<?php echo URL ?>/public/scripts/library.js"></script>
+		<!-----Ckeditor------>
+		<script src="<?php echo URL ?>/public/ckeditor/ckeditor.js"></script>
+		<script src="<?php echo URL ?>/public/ckfinder/ckfinder.js"></script>
 	</head>
 
 	<body class="no-skin">

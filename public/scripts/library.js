@@ -161,6 +161,18 @@ function format_date(str){
     var ngay = date.getDate(), thang = (date.getMonth()) + 1, nam = date.getFullYear();
     return ngay+'-'+thang+'-'+nam;
 }
+
+function check_image_ext(text){
+    if(text != ''){
+        if(text.match(/jpg.*/) || text.match(/jpeg.*/) || text.match(/png.*/) || text.match(/gif.*/)){
+            return true;
+        }else{
+            return false;
+        }
+    }else{
+        return true;
+    }
+}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function save_reject(id_form, post_url, url_reject){
     var xhr = new XMLHttpRequest();
@@ -458,116 +470,4 @@ function exec_del_modal(data_str, url_data, id_div, url_content, modal_id){
             }
         }
     });
-}
-////////////////////////////////////////////////////////////////////////////////////////////
-function combo_select_2(id, url_data, selected, title_selected){
-    $(id).select2({
-        ajax: {
-            url: url_data,
-            dataType: 'json',
-            type: 'GET',
-            data: function (params) {
-                var queryParameters = {
-                    q: params.term
-                }
-                return queryParameters;
-            },
-            processResults: function (data) {
-                return {
-                    results: $.map(data, function (item) {
-                        return {
-                            text: item.title,
-                            id: item.id,
-                            disabled: item.disabled
-                        }
-                    })
-                };
-            }
-        }
-    });
-    if(selected != 0){
-        var $option = $('<option selected>'+title_selected+'</option>').val(selected);
-        $(id).append($option).trigger('change');
-    }
-}
-
-function combo_select_2_multiple(id, url_data, array_object){
-    $(id).select2({
-        multiple: true,
-        ajax: {
-            url: url_data,
-            dataType: 'json',
-            type: 'GET',
-            data: function (params) {
-                var queryParameters = {
-                    q: params.term
-                }
-                return queryParameters;
-            },
-            processResults: function (data) {
-                return {
-                    results: $.map(data, function (item) {
-                        return {
-                            text: item.title,
-                            id: item.id,
-                            disabled: item.disabled
-                        }
-                    })
-                };
-            }
-        }
-    });
-    if(array_object.length != 0){
-        for(const item of array_object){
-            var $option = $('<option selected>'+item.title+'</option>').val(item.idh);
-            $(id).append($option).trigger('change');
-        }
-    }
-}
-
-function format_content(row){
-    //console.log(Object.keys(row).length);
-    if(Object.keys(row).length > 3){
-        var $strdata = $(
-            '<div>'+row.text+'</div><div style="color:gray">'+row.content+'</div>'
-        );
-    }else{
-        var $strdata = '';
-    }
-    return $strdata;
-}
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function change_year(){
-    combo_select_2('#year_change_id', baseUrl + '/other/combo_years', yearid, year_title);
-    $('#modal-change-year').modal('show');
-}
-
-function save_change_year(){
-    var value = $('#year_change_id').val();
-    if(value.length != 0){
-        if($('#year_change_id').val() != yearid){
-            bootbox.confirm({
-                message: "Khi thay đổi năm học dữ liệu sẽ được hiển thị theo năm học bạn đã chọn. Bạn có chắc chắn muốn thay đổi năm học?",
-                buttons:{
-                    confirm: {
-                        label: "Đồng ý",
-                        className: "btn-danger btn-sm"
-                    },
-                    cancel: {
-                        label: "Không đồng ý",
-                        className: "btn-primary btn-sm"
-                    }
-                },
-                callback: function(result){
-                    if(result){
-                        save_reject('#fm-change-year', baseUrl + '/index/change_year', window.location); 
-                    }
-                }
-            });
-        }else{
-            show_message("error", "Không thể chuyển đến cùng năm học");
-        }
-    }else{
-        show_message("error", "Chưa điền đủ thông tin");
-    }
 }

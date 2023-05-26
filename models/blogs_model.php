@@ -17,7 +17,7 @@ class Blogs_Model extends Model{
 
     function get_info($id){
         $query = $this->db->query("SELECT * FROM tbl_content WHERE id = $id");
-        return $query->fetchAll();
+        return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
     function addObj($data){

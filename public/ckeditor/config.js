@@ -10,14 +10,14 @@ CKEDITOR.editorConfig = function( config ) {
 	config.extraPlugins = 'video';
 	config.extraPlugins = 'youtube';
 	config.editorplaceholder = 'Content';
-	config.skin = 'office2013';
+	config.skin = 'bootstrapck';
 	config.toolbar_Pure = [
       {name: 'insert', items: [ 'Image','Video']},
     ]
-	config.filebrowserBrowseUrl = 'http://portal.naturem.us/styles/ckfinder/ckfinder.html';
-	config.filebrowserImageBrowseUrl = 'http://portal.naturem.us/styles/ckfinder/ckfinder.html?type=Images';
-	config.filebrowserFlashBrowseUrl = 'http://portal.naturem.us/styles/ckfinder/ckfinder.html?type=Flash';
-	config.filebrowserUploadUrl = 'http://portal.naturem.us/styles/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
-	config.filebrowserImageUploadUrl = 'http://portal.naturem.us/styles/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images';
-	config.filebrowserFlashUploadUrl = 'http://portal.naturem.us/styles/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash';
+	config.filebrowserBrowseUrl = baseUrl + '/public/ckfinder/ckfinder.html';
+	config.filebrowserImageBrowseUrl = baseUrl + '/public/ckfinder/ckfinder.html?type=Images';
+	config.filebrowserFlashBrowseUrl = baseUrl + '/public/ckfinder/ckfinder.html?type=Flash';
+	config.filebrowserUploadUrl = baseUrl + '/public/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
+	config.filebrowserImageUploadUrl = baseUrl + '/public/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images';
+	config.filebrowserFlashUploadUrl = baseUrl + '/public/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash';
 };
