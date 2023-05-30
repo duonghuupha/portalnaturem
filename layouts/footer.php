@@ -48,11 +48,10 @@
 		<script src="<?php echo URL ?>/styles/js/jquery.toast.js"></script>
 		<script src="<?php echo URL ?>/styles/js/select2.min.js"></script>
 		<script src="<?php echo URL ?>/styles/js/chosen.jquery.min.js"></script>
-		<script src="<?php echo URL ?>/styles/js/fullcalendar.min.js"></script>
 		<script src="<?php echo URL ?>/styles/js/bootbox.js"></script>
 		<script src="<?php echo URL ?>/styles/js/jquery.maskedinput.min.js"></script>
-		<script src="<?php echo URL ?>/styles/js/jquery.bootstrap-duallistbox.min.js"></script>
 		<script src="<?php echo URL ?>/styles/js/tree.min.js"></script>
+		<script src="<?php echo URL ?>/styles/js/bootstrap-tag.min.js"></script>
 		<script src="<?php echo URL ?>/styles/js/ace-elements.min.js"></script>
 		<script src="<?php echo URL ?>/styles/js/ace.min.js"></script>
 		<script>
