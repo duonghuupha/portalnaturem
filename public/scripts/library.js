@@ -27,10 +27,6 @@ $(function(){
             source: ace.vars['US_STATES']
             }
         )
-        var $tag_obj = $('.form-field-tags').data('tag');
-        
-        var index = $tag_obj.inValues('some tag');
-        $tag_obj.remove(index);
     }
     catch(e) {
         tag_input.after('<textarea id="'+tag_input.attr('id')+'" name="'+tag_input.attr('name')+'" rows="3">'+tag_input.val()+'</textarea>').remove();

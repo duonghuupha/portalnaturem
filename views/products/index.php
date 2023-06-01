@@ -51,6 +51,8 @@
             <div class="modal-body">
                 <div class="row">
                     <form id="fm" method="post" enctype="multipart/form-data">
+                        <input id="id" name="id" type="hidden"/>
+                        <input id="data_edit" name="data_edit" type="hidden"/>
                         <div class="col-xs-4">
                             <div class="col-xs-12">
                                 <div class="form-group">
@@ -145,7 +147,7 @@
                                 <div class="form-group">
                                     <label for="form-field-username">Từ khóa sản phẩm</label>
                                     <div>
-                                        <input type="text" id="tags" name="tags" required="" class="form-field-tags"
+                                        <input type="text" id="tags" name="tags[]" required="" class="form-field-tags"
                                         placeholder="Từ khóa sản phẩm" style="width:100%" />
                                     </div>
                                 </div>
@@ -158,7 +160,7 @@
                                     <div class="form-group" id="btn_img_<?php echo $i ?>">
                                         <label for="form-field-username">
                                             <img src="<?php echo URL.'/styles/images/noimg.jpg' ?>" width="100%" style="border:1px solid gray;padding:2px;"
-                                            id="img_<?php echo $i ?>"/>
+                                            id="img_<?php echo $i ?>" class="image_prev"/>
                                         </label>
                                         <div>
                                             <input type="file" id="image_<?php echo $i ?>" name="image_<?php echo $i ?>" class="file_attach" 

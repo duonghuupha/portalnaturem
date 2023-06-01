@@ -8,8 +8,9 @@ class Products_Model extends Model{
         $result = array();
         $query = $this->db->query("SELECT COUNT(*) AS Total FROM tbl_product WHERE title LIKE '%$q%'");
         $row = $query->fetchAll();
-        $query = $this->db->query("SELECT id, code, title, cate_id, stock, price, active, create_at FROM tbl_product
-                                    WHERE title LIKE '%$q%' ORDER BY id DESC LIMIT $offset, $rows");
+        $query = $this->db->query("SELECT id, code, title, cate_id, stock, price, active, create_at,
+                                    (SELECT tbl_category.title FROM tbl_category WHERE tbl_category.id = cate_id)
+                                    AS category FROM tbl_product WHERE title LIKE '%$q%' ORDER BY id DESC LIMIT $offset, $rows");
         $result['total'] = $row[0]['Total'];
         $result['rows']  = $query->fetchAll();
         return $result;
@@ -49,9 +50,19 @@ class Products_Model extends Model{
         $query = $this->insert("tbl_image_product", $data);
         return $query;
     }
+
+    function delObj_image($id){
+        $query = $this->delete("tbl_image_product", "id = $id");
+        return $query;
+    }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
     function get_info($id){
         $query = $this->db->query("SELECT * FROM tbl_product WHERE id = $id");
+        return $query->fetchAll();
+    }
+
+    function get_image_pro($code){
+        $query = $this->db->query("SELECT id, code, image, title FROM tbl_image_product WHERE code = '$code'");
         return $query->fetchAll();
     }
 }

@@ -30,7 +30,7 @@ $jsonObj = $this->jsonObj; $perpage = $this->perpage; $pages = $this->page;
             <td class="text-center"><?php echo $i ?></td>
             <td class="text-center"><?php echo $row['code'] ?></td>
             <td><?php echo $row['title'] ?></td>
-            <td class="text-left"><?php echo $row['cate_id'] ?></td>
+            <td class="text-left"><?php echo $row['category'] ?></td>
             <td class="text-center"><?php echo $row['stock'] ?></td>
             <td class="text-right"><?php echo number_format($row['price']) ?></td>
             <td class="text-center">
@@ -49,7 +49,7 @@ $jsonObj = $this->jsonObj; $perpage = $this->perpage; $pages = $this->page;
                     <a class="blue" href="javascript:void(0)" onclick="detail(<?php echo $row['id'] ?>)">
                         <i class="ace-icon fa fa-search-plus bigger-130"></i>
                     </a>
-                    <a class="green" href="javascript:void(0)" onclick="edit(<?php echo $row['id'] ?>)">
+                    <a class="green" href="javascript:void(0)" onclick="edit(<?php echo $row['id'] ?>, '<?php echo $row['code'] ?>')">
                         <i class="ace-icon fa fa-pencil bigger-130"></i>
                     </a>
                     <a class="red" href="javascript:void(0)" onclick="del(<?php echo $row['id'] ?>)">
