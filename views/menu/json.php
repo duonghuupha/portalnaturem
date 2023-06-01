@@ -1,5 +1,6 @@
 <?php
 $jsonObj = $this->jsonObj; $perpage = $this->perpage; $pages = $this->page;
+$array_type_menu = ['Một bài viết', 'Danh sách bài viết', 'Một sản phẩm', 'Danh sách sản phẩm', 'Liên hệ', 'Liên kết ngoài'];
 ?>
 <table 
     id="dynamic-table" 
@@ -29,11 +30,11 @@ $jsonObj = $this->jsonObj; $perpage = $this->perpage; $pages = $this->page;
         <tr role="row" class="<?php echo $class ?>">
             <td class="text-center"><?php echo $i ?></td>
             <td class="text-center"><?php echo $row['code'] ?></td>
-            <td><?php echo $row['parent'] ?></td>
+            <td><i><?php echo ($row['parent_id'] == 0) ? 'Danh mục gốc' : $this->_Data->return_title_menu_parent($row['parent_id)']) ?></i></td>
             <td id="title_<?php echo $row['id'] ?>"><?php echo $row['title'] ?></td>
-            <td class="text-center"><?php echo $row['type_menu'] ?></td>
-            <td class="text-center"><?php echo $row['position'] ?></td>
-            <td class="text-center" id="order_<?php echo $row['id'] ?>"><?php echo $row['order_menu'] ?></td>
+            <td class="text-center"><?php echo $array_type_menu[$row['type_menu']- 1] ?></td>
+            <td class="text-center"><?php echo ($row['position'] == 1) ? 'Menu top' : 'Menu bottom' ?></td>
+            <td class="text-center" id="ordermenu_<?php echo $row['id'] ?>"><?php echo $row['order_menu'] ?></td>
             <td class="text-center">
                 <?php
                 if($row['active'] == 1){
@@ -58,6 +59,7 @@ $jsonObj = $this->jsonObj; $perpage = $this->perpage; $pages = $this->page;
             <td class="hidden" id="type_<?php echo $row['id'] ?>"><?php echo $row['type_menu'] ?></td>
             <td class="hidden" id="link_<?php echo $row['id'] ?>"><?php echo $row['link'] ?></td>
             <td class="hidden" id="position_<?php echo $row['id'] ?>"><?php echo $row['position'] ?></td>
+            <td class="hidden" id="single_<?php echo $row['id'] ?>"><?php echo $row['single_type'] ?></td>
         </tr>
         <?php
         }

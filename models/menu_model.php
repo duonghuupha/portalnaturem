@@ -8,8 +8,11 @@ class Menu_Model extends Model{
         $result = array();
         $query = $this->db->query("SELECT COUNT(*) AS Total FROM tbl_menu WHERE title LIKE '%$q%'");
         $row = $query->fetchAll();
-        $query = $this->db->query("SELECT id, parent_id, title, type_menu, position, active, order_menu FROM tbl_menu
-                                    WHERE title LIKE '%$q%' ORDER BY id DESC LIMIT $offset, $rows");
+        $query = $this->db->query("SELECT id, code, parent_id, title, type_menu, position, active, order_menu, link,
+                                    IF(type_menu = 1, (SELECT tbl_content.title FROM tbl_content WHERE tbl_content.id = link),
+                                    IF(type_menu = 3, (SELECT tbl_product.title FROM tbl_product WHERE tbl_product.id = link),
+                                    '')) AS single_type 
+                                    FROM tbl_menu WHERE title LIKE '%$q%' ORDER BY order_menu ASC LIMIT $offset, $rows");
         $result['total'] = $row[0]['Total'];
         $result['rows']  = $query->fetchAll();
         return $result;
@@ -28,6 +31,44 @@ class Menu_Model extends Model{
     function delObj($id){
         $query = $this->delete("tbl_menu", "id = $id");
         return $query;
+    }
+/////////////////////////////////////////////////////////////////////////////////////////////////
+    function get_data_blogs($q, $offset, $rows){
+        $result = array();
+        $query = $this->db->query("SELECT COUNT(*) AS Total FROM tbl_content WHERE title LIKE '%$q%'
+                                    AND active = 1");
+        $row = $query->fetchAll();
+        $query = $this->db->query("SELECT code, id, title FROM tbl_content WHERE title LIKE '%$q%'
+                                    AND active = 1");
+        $result['total'] = $row[0]['Total'];
+        $result['rows'] = $query->fetchAll();
+        return $result;
+    }
+
+    function get_data_blogs_total($q){
+        $query = $this->db->query("SELECT COUNT(*) AS Total FROM tbl_content WHERE title LIKE '%$q%'
+                                    AND active = 1");
+        $row = $query->fetchAll();
+        return $row[0]['Total'];
+    }
+
+    function get_data_pro($q, $offset, $rows){
+        $result = array();
+        $query = $this->db->query("SELECT COUNT(*) AS Total FROM tbl_product WHERE title LIKE '%$q%'
+                                    AND active = 1");
+        $row = $query->fetchAll();
+        $query = $this->db->query("SELECT code, id, title FROM tbl_product WHERE title LIKE '%$q%'
+                                    AND active = 1");
+        $result['total'] = $row[0]['Total'];
+        $result['rows'] = $query->fetchAll();
+        return $result;
+    }
+
+    function get_data_pro_total($q){
+        $query = $this->db->query("SELECT COUNT(*) AS Total FROM tbl_product WHERE title LIKE '%$q%'
+                                    AND active = 1");
+        $row = $query->fetchAll();
+        return $row[0]['Total'];
     }
 }
 ?>

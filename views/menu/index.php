@@ -77,7 +77,7 @@
                                 <div>
                                     <select id="type_menu" name="type_menu" class="select2"
                                     data-placeholder="Lựa chọn kiểu menu" style="width:100%"
-                                    onchange="set_data(this.value)">
+                                    onchange="set_data(this.value)" required="">
                                         <option value="">Lựa chọn kiểu menu</option>
                                         <option value="1">Một bài viết</option>
                                         <option value="2">Danh sách bài viết</option>
@@ -96,7 +96,7 @@
                                     <input type="text" id="single_blog_title" name="single_blog_title"
                                     placeholder="Click Go! để lựa chọn" style="width:100%" readonly=""/>
                                     <span class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary" type="button" onclick="select_blog()"
+                                        <button class="btn btn-sm btn-primary" type="button" onclick="select_blogs()"
                                         id="select_users">
                                             <i class="ace-icon fa fa-users bigger-110"></i>
                                             Go!
@@ -121,7 +121,7 @@
                             <div class="form-group" id="list_pro">
                                 <label for="form-field-username">Lựa chọn danh mục sản phẩm</label>
                                 <div>
-                                    <select id="product_cate" name="product_cate" class="select2"
+                                    <select id="product_cate" name="product_cate[]" class="select2"
                                     data-placeholder="Lựa chọn danh mục" style="width:100%" multiple=""></select>
                                 </div>
                             </div>
@@ -149,7 +149,7 @@
                             <div class="form-group">
                                 <label for="form-field-username">Thứ tự hiển thị</label>
                                 <div>
-                                    <input type="text" id="title" name="title" required="" 
+                                    <input type="text" id="order_menu" name="order_menu" required="" 
                                     placeholder="Thứ tự hiển thị menu" style="width:100%"
                                     onkeypress="validate(event)"/>
                                 </div>
@@ -173,5 +173,76 @@
 </div>
 <!-- End formm don vi tinh-->
 
+<!--Form don vi tinh-->
+<div id="modal-blogs" class="modal fade" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <span class="white">×</span>
+                    </button>
+                    Danh sách bài viết
+                </div>
+            </div>
+            <div class="modal-body" style="height:520px;">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12">
+                        <input class="form-control" id="nav-search-input-blogs" type="text" style="width:100%"
+                        placeholder="Tìm kiếm" onkeyup="search_blogs()"/>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="space-6"></div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12">
+                        <div id="list_blogs" class="dataTables_wrapper form-inline no-footer"></div>
+                    </div><!-- /.col -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <small class="pull-right" id="pager_blogs">
+                    <!--display pagination-->
+                </small>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!-- End formm don vi tinh-->
+
+<!--Form don vi tinh-->
+<div id="modal-pro" class="modal fade" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <span class="white">×</span>
+                    </button>
+                    Danh sách sản phẩm
+                </div>
+            </div>
+            <div class="modal-body" style="height:520px;">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12">
+                        <input class="form-control" id="nav-search-input-pro" type="text" style="width:100%"
+                        placeholder="Tìm kiếm" onkeyup="search_pro()"/>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="space-6"></div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12">
+                        <div id="list_product" class="dataTables_wrapper form-inline no-footer"></div>
+                    </div><!-- /.col -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <small class="pull-right" id="pager_pro">
+                    <!--display pagination-->
+                </small>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!-- End formm don vi tinh-->
 
 <script src="<?php echo URL.'/public/' ?>scripts/menu/index.js"></script>
