@@ -26,9 +26,10 @@ class Blogs extends Controller{
         $desc = addslashes($_REQUEST['description']);
         $content = addslashes($_REQUEST['noidung']);
         $image = $this->_Convert->convert_file($_FILES['image']['name'], 'content_blogs');
-        $create_at = date("Y-m-d H:i:s"); $active = 1;
+        $create_at = date("Y-m-d H:i:s"); $active = 1; $tags = implode(", ",$_REQUEST['tags']);
         $data = array("code" => $code, "cate_id" => $cate, "title" => $title, "description" => $desc,
-                        "content" => $content, "image" => $image, "create_at" => $create_at, "active" => $active);
+                        "content" => $content, "image" => $image, "create_at" => $create_at, "active" => $active,
+                        "tags" => $tags);
         $temp = $this->model->addObj($data);
         if($temp){
             if(move_uploaded_file($_FILES['image']['tmp_name'], DIR_UPLOAD.'/images/blogs/content/'.$image)){
@@ -51,10 +52,10 @@ class Blogs extends Controller{
     function update(){
         $id = base64_decode($_REQUEST['id']); $cate = 0; $title = $_REQUEST['title'];
         $desc = addslashes($_REQUEST['description']); $img = $_REQUEST['image_old'];
-        $content = addslashes($_REQUEST['noidung']);
+        $content = addslashes($_REQUEST['noidung']); $tags = implode(", ",$_REQUEST['tags']);
         $image = ($_FILES['image']['name'] != '') ? $this->_Convert->convert_file($_FILES['image']['name'], 'content_blog') : $img;
         $create_at = date("Y-m-d H:i:s"); $active = 1;
-        $data = array("cate_id" => $cate, "title" => $title, "description" => $desc,
+        $data = array("cate_id" => $cate, "title" => $title, "description" => $desc, "tags" => $tags,
                         "content" => $content, "image" => $image, "create_at" => $create_at);
         $temp = $this->model->updateObj($id, $data);
         if($temp){

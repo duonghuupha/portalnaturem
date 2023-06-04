@@ -53,6 +53,7 @@
                     <form id="fm" method="post" enctype="multipart/form-data">
                         <input id="id" name="id" type="hidden"/>
                         <input id="data_edit" name="data_edit" type="hidden"/>
+                        <input id="noidung" name="noidung" type="hidden"/>
                         <div class="col-xs-4">
                             <div class="col-xs-12">
                                 <div class="form-group">
@@ -139,7 +140,7 @@
                                     <label for="form-field-username">Mô tả sản phẩm</label>
                                     <div>
                                         <textarea type="text" id="description" name="description" required=""
-                                        placeholder="Mô tả sản phẩm" style="width:100%;height:300px;resize:none"></textarea>
+                                        placeholder="Mô tả sản phẩm" style="width:100%;height:200px;resize:none"></textarea>
                                     </div>
                                 </div>
                             </div>

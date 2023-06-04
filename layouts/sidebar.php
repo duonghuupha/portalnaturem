@@ -65,6 +65,13 @@
             <b class="arrow"></b>
         </li>
         <li class="hover">
+            <a href="<?php echo URL.'/customers' ?>">
+                <i class="menu-icon fa fa-user"></i>
+                <span class="menu-text"> Quản lý khách hàng </span>
+            </a>
+            <b class="arrow"></b>
+        </li>
+        <li class="hover">
             <a href="<?php echo URL.'/maketing' ?>">
                 <i class="menu-icon fa fa-gift"></i>
                 <span class="menu-text"> Maketing </span>

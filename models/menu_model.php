@@ -12,7 +12,7 @@ class Menu_Model extends Model{
                                     IF(type_menu = 1, (SELECT tbl_content.title FROM tbl_content WHERE tbl_content.id = link),
                                     IF(type_menu = 3, (SELECT tbl_product.title FROM tbl_product WHERE tbl_product.id = link),
                                     '')) AS single_type 
-                                    FROM tbl_menu WHERE title LIKE '%$q%' ORDER BY order_menu ASC LIMIT $offset, $rows");
+                                    FROM tbl_menu WHERE title LIKE '%$q%' ORDER BY position, order_menu ASC LIMIT $offset, $rows");
         $result['total'] = $row[0]['Total'];
         $result['rows']  = $query->fetchAll();
         return $result;

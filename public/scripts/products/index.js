@@ -2,6 +2,17 @@ var page = 1, keyword = '', url = ''; let data_img = [];
 $(function(){
     $('#list_data').load(baseUrl + '/products/json');
     $('#cate_id').load(baseUrl + '/other/combo_cate');
+    tinymce.init({
+        selector: '#description',
+        plugins: 'anchor autolink charmap codesample emoticons link lists searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss fullscreen',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+        mergetags_list: [
+            { value: 'First.Name', title: 'First Name' },
+            { value: 'Email', title: 'Email' },
+        ],
+        height: "250"
+    });
 });
 
 function add(){
@@ -22,7 +33,7 @@ function edit(idh, code){
         $('#longs').val(data.longs); $('#wide').val(data.wide); $('#hight').val(data.hight);
         $('#weight').val(data.weight);
         /*************************************************************************** */
-        $('#title').val(data.title); $('#description').val(data.description);
+        $('#title').val(data.title); tinymce.get('description').setContent(data.description);
         var val_tags = data.tags.split(', '); var $tag_obj = $('.form-field-tags').data('tag');
         for(var i = 0; i < val_tags.length; i++){
 		    $tag_obj.add(val_tags[i]);
@@ -45,7 +56,8 @@ function del(idh){
 }
 
 function save(){
-    var img = $('input[type="file"]').val();
+    var img = $('input[type="file"]').val(); var noidung = tinymce.get('description').getContent();
+    console.log(noidung);
     var required = $('input,textarea,select').filter('[required]:visible');
     var allRequired = true, img = true;
     required.each(function(){
@@ -53,8 +65,8 @@ function save(){
             allRequired = false;
         }
     });
-    if(allRequired && img.length != 0){
-        $('#data_edit').val(JSON.stringify(data_img));
+    if(allRequired && img.length != 0 && noidung.length > 0){
+        $('#data_edit').val(JSON.stringify(data_img)); $('#noidung').val(noidung);
         save_form_modal('#fm', url, '#modal-data', '#list_data',  baseUrl+'/products/json?page='+page+'&q='+keyword); 
     }else{
         show_message("error", "Chưa điền đủ thông tin");

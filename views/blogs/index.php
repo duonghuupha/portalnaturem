@@ -96,6 +96,15 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="form-field-username">Từ khóa bài viết</label>
+                                <div>
+                                    <input type="text" id="tags" name="tags[]" required="" class="form-field-tags"
+                                    placeholder="Từ khóa bài viết" style="width:100%" />
+                                </div>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

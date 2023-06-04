@@ -26,7 +26,7 @@ class Products extends Controller{
         $code = $_REQUEST['code']; $cateid = $_REQUEST['cate_id']; $stock = $_REQUEST['stock'];
         $price = str_replace(",", "", $_REQUEST['price']); $weight = $_REQUEST['weight'];
         $long = $_REQUEST['longs']; $wide = $_REQUEST['wide']; $hight = $_REQUEST['hight'];
-        $title = $_REQUEST['title']; $desc = addslashes($_REQUEST['description']);
+        $title = $_REQUEST['title']; $desc = addslashes($_REQUEST['noidung']);
         $tags = implode(", ", $_REQUEST['tags']);
         if($this->model->dupliObj(0, $code) > 0){
             $jsonObj['msg'] = "Mã sản phẩm đã tồn tại";
@@ -68,7 +68,7 @@ class Products extends Controller{
         $code = $_REQUEST['code']; $cateid = $_REQUEST['cate_id']; $stock = $_REQUEST['stock'];
         $price = str_replace(",", "", $_REQUEST['price']); $weight = $_REQUEST['weight'];
         $long = $_REQUEST['longs']; $wide = $_REQUEST['wide']; $hight = $_REQUEST['hight'];
-        $title = $_REQUEST['title']; $desc = addslashes($_REQUEST['description']);
+        $title = $_REQUEST['title']; $desc = addslashes($_REQUEST['noidung']);
         $tags = implode(", ", $_REQUEST['tags']); $id = base64_decode($_REQUEST['idh']);
         $dataedit = json_decode($_REQUEST['data_edit'], true);
         if($this->model->dupliObj($id, $code) > 0){

@@ -16,6 +16,10 @@ function edit(idh){
     $.getJSON(baseUrl + '/blogs/info?id='+btoa(idh), function(data){
         $('#title').val(data.title); $('#description').val(data.description);
         CKEDITOR.instances['content'].setData(data.content); $('#image_old').val(data.image);
+        var val_tags = data.tags.split(', '); var $tag_obj = $('.form-field-tags').data('tag');
+        for(var i = 0; i < val_tags.length; i++){
+		    $tag_obj.add(val_tags[i]);
+        }
     });
     url = baseUrl + '/blogs/update?id='+btoa(idh);
 }
