@@ -22,7 +22,7 @@ class Blogs extends Controller{
     }
 
     function add(){
-        $code = time(); $cate = 0; $title = $_REQUEST['title'];
+        $code = time(); $cate = 0; $title = addslashes($_REQUEST['title']);
         $desc = addslashes($_REQUEST['description']);
         $content = addslashes($_REQUEST['noidung']);
         $image = $this->_Convert->convert_file($_FILES['image']['name'], 'content_blogs');
@@ -50,7 +50,7 @@ class Blogs extends Controller{
     }
 
     function update(){
-        $id = base64_decode($_REQUEST['id']); $cate = 0; $title = $_REQUEST['title'];
+        $id = base64_decode($_REQUEST['id']); $cate = 0; $title = addslashes($_REQUEST['title']);
         $desc = addslashes($_REQUEST['description']); $img = $_REQUEST['image_old'];
         $content = addslashes($_REQUEST['noidung']); $tags = implode(", ",$_REQUEST['tags']);
         $image = ($_FILES['image']['name'] != '') ? $this->_Convert->convert_file($_FILES['image']['name'], 'content_blog') : $img;

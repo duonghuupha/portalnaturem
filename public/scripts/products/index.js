@@ -5,6 +5,7 @@ $(function(){
     tinymce.init({
         selector: '#description',
         plugins: 'anchor autolink charmap codesample emoticons link lists searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss fullscreen',
+         toolbar: 'undo redo fullscreen | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
         tinycomments_mode: 'embedded',
         tinycomments_author: 'Author name',
         mergetags_list: [
@@ -19,8 +20,9 @@ function add(){
     var number = Math.floor(Math.random() * 99999);
     $('#code').val('NTR-'+number); $('#cate_id').val('').trigger('change');
     $('#stock').val(null); $('#price').val(null); $('#longs').val(null); $('#wide').val(null);
-    $('#hight').val(null); $('#weight').val(null); $('#title').val(null); $('#description').val(null);
+    $('#hight').val(null); $('#weight').val(null); $('#title').val(null);
     $('.image_prev').attr('src', baseUrl + '/styles/images/noimg.jpg');
+    tinymce.get('description').setContent(''); $('.file_attach').ace_file_input('reset_input');
     $('#id').val(0); data_img = []; $('#modal-data').modal('show');
     url = baseUrl + '/products/add';
 }
