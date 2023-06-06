@@ -6,8 +6,8 @@ $(function(){
 
 function add(){
     $('#modal-data').modal('show'); $('#image').attr('required', true);
-    $('#title').val(null); $('#image').val(null); $('#description').val(null);
-    CKEDITOR.instances['content'].setData(null);
+    $('#title').val(null); $('.file_attach').ace_file_input('reset_input'); 
+    $('#description').val(null); CKEDITOR.instances['content'].setData(null);
     url = baseUrl + '/blogs/add';
 }
 
@@ -21,6 +21,7 @@ function edit(idh){
 		    $tag_obj.add(val_tags[i]);
         }
     });
+    $('.file_attach').ace_file_input('reset_input');
     url = baseUrl + '/blogs/update?id='+btoa(idh);
 }
 
