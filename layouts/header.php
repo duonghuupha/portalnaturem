@@ -32,7 +32,6 @@
 		<!-----Ckeditor------>
 		<script src="<?php echo URL ?>/public/ckeditor/ckeditor.js"></script>
 		<script src="<?php echo URL ?>/public/ckfinder/ckfinder.js"></script>
-		<script src="https://cdn.tiny.cloud/1/8zqwcfmycmxrpab2j71f38mn1wsbyb1y22lmeo8omcwzsu41/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 	</head>
 
 	<body class="no-skin">

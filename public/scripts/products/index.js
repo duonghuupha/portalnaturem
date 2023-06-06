@@ -2,18 +2,11 @@ var page = 1, keyword = '', url = ''; let data_img = [];
 $(function(){
     $('#list_data').load(baseUrl + '/products/json');
     $('#cate_id').load(baseUrl + '/other/combo_cate');
-    tinymce.init({
-        selector: '#description',
-        plugins: 'anchor autolink charmap codesample emoticons link lists searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss fullscreen',
-         toolbar: 'undo redo fullscreen | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-        tinycomments_mode: 'embedded',
-        tinycomments_author: 'Author name',
-        mergetags_list: [
-            { value: 'First.Name', title: 'First Name' },
-            { value: 'Email', title: 'Email' },
-        ],
-        height: "250"
-    });
+    CKEDITOR.replace( 'description', {
+        toolbar: [
+            ['Bold', 'Italic', 'Underline', 'Strike', 'TextColor', '-', 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink', 'Maximize']
+        ]
+    } );
 });
 
 function add(){
@@ -22,7 +15,7 @@ function add(){
     $('#stock').val(null); $('#price').val(null); $('#longs').val(null); $('#wide').val(null);
     $('#hight').val(null); $('#weight').val(null); $('#title').val(null);
     $('.image_prev').attr('src', baseUrl + '/styles/images/noimg.jpg');
-    tinymce.get('description').setContent(''); $('.file_attach').ace_file_input('reset_input');
+    $('.file_attach').ace_file_input('reset_input'); CKEDITOR.instances['description'].setData(null);
     $('#id').val(0); data_img = []; $('#modal-data').modal('show');
     url = baseUrl + '/products/add';
 }
@@ -35,7 +28,7 @@ function edit(idh, code){
         $('#longs').val(data.longs); $('#wide').val(data.wide); $('#hight').val(data.hight);
         $('#weight').val(data.weight);
         /*************************************************************************** */
-        $('#title').val(data.title); tinymce.get('description').setContent(data.description);
+        $('#title').val(data.title);CKEDITOR.instances['description'].setData(data.description);
         var val_tags = data.tags.split(', '); var $tag_obj = $('.form-field-tags').data('tag');
         for(var i = 0; i < val_tags.length; i++){
 		    $tag_obj.add(val_tags[i]);
@@ -58,8 +51,7 @@ function del(idh){
 }
 
 function save(){
-    var img = $('input[type="file"]').val(); var noidung = tinymce.get('description').getContent();
-    console.log(noidung);
+    var img = $('input[type="file"]').val(); var noidung = CKEDITOR.instances['description'].getData()
     var required = $('input,textarea,select').filter('[required]:visible');
     var allRequired = true, img = true;
     required.each(function(){
