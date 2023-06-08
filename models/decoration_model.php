@@ -19,6 +19,12 @@ class Decoration_Model extends Model{
         return $query->fetchAll();
     }
 
+    function get_data_block_night(){
+        $query = $this->db->query("SELECT * FROM tbl_block_9 WHERE id = 1");
+        return $query->fetchAll();
+    }
+
+
     function updateObj_block_one($data){
         $query = $this->update("tbl_block_1", $data, "id = 1");
         return $query;
@@ -43,6 +49,11 @@ class Decoration_Model extends Model{
 
     function updateObj_block_five($data){
         $query = $this->update("tbl_block_4", $data, "id = 1");
+        return $query;
+    }
+
+    function updateObj_block_night($data){
+        $query = $this->update("tbl_block_9", $data, "id = 1");
         return $query;
     }
 }

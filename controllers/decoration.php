@@ -29,6 +29,12 @@ class Decoration extends Controller{
         $this->view->render("decoration/block_five");
     }
 
+    function block_night(){
+        $jsonObj = $this->model->get_data_block_night();
+        $this->view->jsonObj = json_encode($jsonObj[0]);
+        $this->view->render("decoration/block_night");
+    }
+
     function update_block_one(){
         $dataid = implode(",", $_REQUEST['pro_cate_block_1']);
         $titlebtn = $_REQUEST['title_btn_block_1']; $linkbtn = $_REQUEST['link_btn_block_1'];
@@ -108,5 +114,21 @@ class Decoration extends Controller{
         $this->view->render("decoration/update_block_five");
     }
 
+    function update_block_night(){
+        $title1 = $_REQUEST['title_block_9_1']; $title2 = $_REQUEST['title_block_9_2'];
+        $number = $_REQUEST['number_post_block_9'];
+        $data = array("title_1" => $title1, "title_2" => $title2, "number_post" => $number);
+        $temp = $this->model->updateObj_block_night($data);
+        if($temp){
+            $jsonObj['msg'] = "Ghi dữ liệu thành công";
+            $jsonObj['success'] = true;
+            $this->view->jsonObj = json_encode($jsonObj);
+        }else{
+            $jsonObj['msg'] = "Ghi dữ liệu không thành công";
+            $jsonObj['success'] = false;
+            $this->view->jsonObj = json_encode($jsonObj);
+        }
+        $this->view->render("decoration/update_block_night");
+    }
 }
 ?>

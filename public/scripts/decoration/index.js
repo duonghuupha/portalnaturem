@@ -1,18 +1,18 @@
 var page_pro_block_3 = 1, keyword_block_3 = '', data_block_3 = [], page_pro_block_4 = 1;
 $(function(){
-    $('#block_1, #block_3, #block_4').hide();
+    $('#block_1, #block_3, #block_4, #block_9').hide();
 })
 function set_img_block(value){
     $('#img_block').attr('src', baseUrl + '/styles/images/img_block/block_'+value+'.png');
     if(value == 1){
-        $('#block_1').show(); $('#block_3').hide(); $('#block_4').hide();
+        $('#block_1').show(); $('#block_3').hide(); $('#block_4').hide(); $('#block_9').hide();
         $('#pro_cate_block_1').load(baseUrl + '/other/combo_cate');
         $.getJSON(baseUrl + '/decoration/block_one', function(data){
             $('#pro_cate_block_1').val(data.data_id.split(',')).trigger('change');
             $('#title_btn_block_1').val(data.title_btn); $('#link_btn_block_1').val(data.link_btn);
         });
     }else if(value == 3){
-        $('#block_3').show(); $('#block_1').hide(); $('#block_4').hide(); 
+        $('#block_3').show(); $('#block_1').hide(); $('#block_4').hide(); $('#block_9').hide();
         $('#pro_cate_block_3').load(baseUrl + '/other/combo_cate');
         $.getJSON(baseUrl + '/decoration/block_three', function(data){
             $('#title_block_3_1').val(data.title_1); $('#title_block_3_2').val(data.title_2);
@@ -32,7 +32,7 @@ function set_img_block(value){
             }
         });
     }else if(value == 5){
-        $('#block_3').hide(); $('#block_1').hide(); $('#block_4').show(); 
+        $('#block_3').hide(); $('#block_1').hide(); $('#block_4').show(); $('#block_9').hide();
         $('#list_data_block_4').load(baseUrl + '/decoration/list_pro_4');
         $.getJSON(baseUrl + '/decoration/block_five', function(data){
             $('#title_block_4_1').val(data.title_1); $('#title_block_4_2').val(data.title_2);
@@ -41,6 +41,12 @@ function set_img_block(value){
             setInterval(function(){
                 $('#ck_block_4_'+data.data_id).prop('checked', true);
             }, 200);
+        });
+    }else if(value == 10){
+        $('#block_3').hide(); $('#block_1').hide(); $('#block_4').hide(); $('#block_9').show();
+        $.getJSON(baseUrl + '/decoration/block_night', function(data){
+            $('#title_block_9_1').val(data.title_1); $('#title_block_9_2').val(data.title_2);
+            $('#number_post_block_9').val(data.number_post);
         })
     }else{
         $('#block_1, #block_3, #block_4').hide();
@@ -149,6 +155,21 @@ function save_block_4(){
     });
     if(allRequired && $('#data_id_4').val().length != 0){
         save_reject('#fm_block_4', baseUrl + '/decoration/update_block_five', baseUrl + '/decoration');
+    }else{
+        show_message("error", "Chưa điền đủ thông tin");
+    }
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+function save_block_9(){
+    var required = $('#fm_block_9 input, #fm_block_9 textarea, #fm_block_9 select').filter('[required]:visible');
+    var allRequired = true;
+    required.each(function(){
+        if($(this).val() == ''){
+            allRequired = false;
+        }
+    });
+    if(allRequired){
+        save_reject('#fm_block_9', baseUrl + '/decoration/update_block_night', baseUrl + '/decoration');
     }else{
         show_message("error", "Chưa điền đủ thông tin");
     }

@@ -204,6 +204,44 @@
                             </div>
                         </form>
                     </div>
+                    <!--------------------------------------------------------------------------------------------->
+                    <div id="block_9">
+                        <form id="fm_block_9" method="post">
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label for="form-field-username">Tiêu đề 1</label>
+                                    <div>
+                                        <input id="title_block_9_1" name="title_block_9_1" class="form-control"
+                                        placeholder="Tiêu đề 1" style="width:100%" required="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label for="form-field-username">Tiêu đề 2</label>
+                                    <div>
+                                        <input id="title_block_9_2" name="title_block_9_2" class="form-control"
+                                        placeholder="Tiêu đề 2" style="width:100%" required="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label for="form-field-username">Số lượng tin bài hiển thị</label>
+                                    <div>
+                                        <input id="number_post_block_9" name="number_post_block_9" class="form-control"
+                                        placeholder="Số lượng tin bài hiển thị" style="width:100%" required="" onkeypress="validate(event)">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 text-center">
+                                <button class="btn btn-sm btn-primary" type="button" onclick="save_block_9()">
+                                    <i class="ace-icon fa fa-save"></i>
+                                    Ghi dữ liệu
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.page-content -->
