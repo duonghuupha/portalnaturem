@@ -23,6 +23,12 @@ class Decoration extends Controller{
         $this->view->render("decoration/block_three");
     }
 
+    function block_five(){
+        $jsonObj = $this->model->get_data_block_five();
+        $this->view->jsonObj = json_encode($jsonObj[0]);
+        $this->view->render("decoration/block_five");
+    }
+
     function update_block_one(){
         $dataid = implode(",", $_REQUEST['pro_cate_block_1']);
         $titlebtn = $_REQUEST['title_btn_block_1']; $linkbtn = $_REQUEST['link_btn_block_1'];
@@ -84,7 +90,22 @@ class Decoration extends Controller{
     }
 
     function update_block_five(){
-        
+        $title1 = $_REQUEST['title_block_4_1']; $title2 = $_REQUEST['title_block_4_2'];
+        $content1 = $_REQUEST['content_block_4_1']; $content2 = $_REQUEST['content_block_4_2'];
+        $desc = $_REQUEST['content_block_4_3']; $dataid = $_REQUEST['data_id_4'];
+        $data = array("title_1" => $title1, "title_2" => $title2, "content_1" => $content1,
+                        "content_2" => $content2, "description" => $desc, "data_id" => $dataid);
+        $temp = $this->model->updateObj_block_five($data);
+        if($temp){
+            $jsonObj['msg'] = "Ghi dữ liệu thành công";
+            $jsonObj['success'] = true;
+            $this->view->jsonObj = json_encode($jsonObj);
+        }else{
+            $jsonObj['msg'] = "Ghi dữ liệu không thành công";
+            $jsonObj['success'] = false;
+            $this->view->jsonObj = json_encode($jsonObj);
+        }
+        $this->view->render("decoration/update_block_five");
     }
 
 }

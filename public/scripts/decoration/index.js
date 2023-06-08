@@ -34,6 +34,14 @@ function set_img_block(value){
     }else if(value == 5){
         $('#block_3').hide(); $('#block_1').hide(); $('#block_4').show(); 
         $('#list_data_block_4').load(baseUrl + '/decoration/list_pro_4');
+        $.getJSON(baseUrl + '/decoration/block_five', function(data){
+            $('#title_block_4_1').val(data.title_1); $('#title_block_4_2').val(data.title_2);
+            $('#content_block_4_1').val(data.content_1); $('#content_block_4_2').val(data.content_2);
+            $('#content_block_4_3').val(data.description); $('#data_id_4').val(data.data_id);
+            setInterval(function(){
+                $('#ck_block_4_'+data.data_id).prop('checked', true);
+            }, 200);
+        })
     }else{
         $('#block_1, #block_3, #block_4').hide();
     }

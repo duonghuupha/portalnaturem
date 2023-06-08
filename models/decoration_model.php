@@ -14,6 +14,11 @@ class Decoration_Model extends Model{
         return $query->fetchAll();
     }
 
+    function get_data_block_five(){
+        $query = $this->db->query("SELECT * FROM tbl_block_4 WHERE id = 1");
+        return $query->fetchAll();
+    }
+
     function updateObj_block_one($data){
         $query = $this->update("tbl_block_1", $data, "id = 1");
         return $query;
