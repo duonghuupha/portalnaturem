@@ -5,12 +5,14 @@ $(function(){
 
 function add(){
     $('#modal-data').modal('show'); $('#title, #description, #image').val(null);
+    $('.file_attach').ace_file_input('reset_input');
     url = baseUrl + '/category/add';
 }
 
 function edit(idh){
     $('#modal-data').modal('show'); $('#title').val($('#title_'+idh).text());
     $('#description').val($('#desc_'+idh).text()); $('#image_old').val($('#image_'+idh).text());
+    $('.file_attach').ace_file_input('reset_input');
     url = baseUrl + '/category/update?id='+btoa(idh);
 }
 

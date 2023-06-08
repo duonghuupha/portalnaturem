@@ -39,7 +39,7 @@ class Menu_Model extends Model{
                                     AND active = 1");
         $row = $query->fetchAll();
         $query = $this->db->query("SELECT code, id, title FROM tbl_content WHERE title LIKE '%$q%'
-                                    AND active = 1");
+                                    AND active = 1 LIMIT $offset, $rows");
         $result['total'] = $row[0]['Total'];
         $result['rows'] = $query->fetchAll();
         return $result;
@@ -58,7 +58,7 @@ class Menu_Model extends Model{
                                     AND active = 1");
         $row = $query->fetchAll();
         $query = $this->db->query("SELECT code, id, title FROM tbl_product WHERE title LIKE '%$q%'
-                                    AND active = 1");
+                                    AND active = 1 LIMIT $offset, $rows");
         $result['total'] = $row[0]['Total'];
         $result['rows'] = $query->fetchAll();
         return $result;

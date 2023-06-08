@@ -65,6 +65,7 @@ class Category extends Controller{
         if($temp){
             if($_FILES['image']['name'] != ''){
                 if(move_uploaded_file($_FILES['image']['tmp_name'], DIR_UPLOAD.'/images/category/'.$image)){
+                    unlink(DIR_UPLOAD.'/images/category/'.$image_old);
                     $jsonObj['msg'] = "Ghi dữ liệu thành công";
                     $jsonObj['success'] = true;
                     $this->view->jsonObj = json_encode($jsonObj);
