@@ -35,6 +35,12 @@ class Decoration extends Controller{
         $this->view->render("decoration/block_night");
     }
 
+    function block_seven(){
+        $jsonObj = $this->model->get_data_block_seven();
+        $this->view->jsonObj = json_encode($jsonObj[0]);
+        $this->view->render("decoration/block_seven");
+    }
+
     function update_block_one(){
         $dataid = implode(",", $_REQUEST['pro_cate_block_1']);
         $titlebtn = $_REQUEST['title_btn_block_1']; $linkbtn = $_REQUEST['link_btn_block_1'];
@@ -129,6 +135,29 @@ class Decoration extends Controller{
             $this->view->jsonObj = json_encode($jsonObj);
         }
         $this->view->render("decoration/update_block_night");
+    }
+
+    function update_block_seven(){
+        $title1 = $_REQUEST['title_block_7_1']; $title2 = $_REQUEST['title_block_7_1'];
+        $noidung = $_REQUEST['content_block_7'];
+        $image = ($_FILES['image_block_7']['name'] != '') ? $_FILES['image_block_7']['name'] : $_REQUEST['image_block_7_old'];
+        $proid1 = $_REQUEST['pro_id_1']; $proid2 = $_REQUEST['pro_id_2'];
+        $data = array("image" => $image, "title_1" => $title1, "title_2" => $title2, "description" => $noidung,
+                        "pro_id_1" => $proid1, " pro_id_2" => $proid2);
+        $temp = $this->model->updateObj_block_seven($data);
+        if($temp){
+            if($_FILES['image_block_7']['name'] != ''){
+                move_uploaded_file($_FILES['image_block_7']['tmp_name'], DIR_UPLOAD.'/images/other/'.$image);
+            }
+            $jsonObj['msg'] = "Ghi dữ liệu thành công";
+            $jsonObj['success'] = true;
+            $this->view->jsonObj = json_encode($jsonObj);
+        }else{
+            $jsonObj['msg'] = "Ghi dữ liệu không thành công";
+            $jsonObj['success'] = false;
+            $this->view->jsonObj = json_encode($jsonObj);
+        }
+        $this->view->render("decoration/update_block_seven");
     }
 }
 ?>

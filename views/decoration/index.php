@@ -242,10 +242,128 @@
                             </div>
                         </form>
                     </div>
+                    <!--------------------------------------------------------------------------------------->
+                    <div id="block_7">
+                        <form id="fm_block_7" method="post" enctype="multipart/form-data">
+                            <input id="pro_id_1" name="pro_id_1" type="hidden"/>
+                            <input id="pro_id_2" name="pro_id_2" type="hidden"/>
+                            <input id="image_block_7_old" name="image_block_7_old" type="hidden"/>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label for="form-field-username">Hình ảnh</label>
+                                    <div>
+                                        <input type="file" id="image_block_7" name="image_block_7" class="file_attach" 
+                                        style="width:100%"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label for="form-field-username">Tiêu đề 1</label>
+                                    <div>
+                                        <input id="title_block_7_1" name="title_block_7_1" class="form-control"
+                                        placeholder="Tiêu đề 1" style="width:100%" required="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label for="form-field-username">Tiêu đề 2</label>
+                                    <div>
+                                        <input id="title_block_7_2" name="title_block_7_2" class="form-control"
+                                        placeholder="Tiêu đề 2" style="width:100%" required="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label for="form-field-username">Nội dung</label>
+                                    <div>
+                                        <textarea id="content_block_7" name="content_block_7" class="form-control"
+                                        placeholder="Nội dung" style="width:100%;height:100px;resize:none" required=""></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group" id="single_product">
+                                    <label for="form-field-username">Lựa chọn sản phẩm 1</label>
+                                    <div class="input-group">
+                                        <input type="text" id="pro_title_1" name="pro_title_1"
+                                        placeholder="Click Go! để lựa chọn" style="width:100%" readonly=""/>
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-sm btn-primary" type="button" onclick="select_pro_1()"
+                                            id="select_users">
+                                                <i class="ace-icon fa fa-users bigger-110"></i>
+                                                Go!
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group" id="single_product">
+                                    <label for="form-field-username">Lựa chọn sản phẩm 2</label>
+                                    <div class="input-group">
+                                        <input type="text" id="pro_title_2" name="pro_title_2"
+                                        placeholder="Click Go! để lựa chọn" style="width:100%" readonly=""/>
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-sm btn-primary" type="button" onclick="select_pro_2()"
+                                            id="select_users">
+                                                <i class="ace-icon fa fa-users bigger-110"></i>
+                                                Go!
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 text-center">
+                                <button class="btn btn-sm btn-primary" type="button" onclick="save_block_7()">
+                                    <i class="ace-icon fa fa-save"></i>
+                                    Ghi dữ liệu
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.page-content -->
     </div>
 </div><!-- /.main-content -->
+
+<!--Form don vi tinh-->
+<div id="modal-pro" class="modal fade" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <span class="white">×</span>
+                    </button>
+                    Danh sách sản phẩm
+                </div>
+            </div>
+            <div class="modal-body" style="height:520px;">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12">
+                        <input class="form-control" id="nav-search-input-pro" type="text" style="width:100%"
+                        placeholder="Tìm kiếm" onkeyup="search_pro()"/>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="space-6"></div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12">
+                        <div id="list_product" class="dataTables_wrapper form-inline no-footer"></div>
+                    </div><!-- /.col -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <small class="pull-right" id="pager_pro">
+                    <!--display pagination-->
+                </small>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!-- End formm don vi tinh-->
 
 <script src="<?php echo URL.'/public/' ?>scripts/decoration/index.js"></script>

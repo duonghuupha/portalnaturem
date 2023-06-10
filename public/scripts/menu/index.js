@@ -142,5 +142,5 @@ function search_pro(){
 function confirm_pro(idh){
     $('#product_id').val(idh);
     $('#single_pro_title').val($('#titlepro_'+idh).text());
-    $('#modal-pro').model('hide');
+    $('#modal-pro').modal('hide');
 }
