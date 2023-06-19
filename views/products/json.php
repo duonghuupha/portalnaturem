@@ -61,6 +61,7 @@ $jsonObj = $this->jsonObj; $perpage = $this->perpage; $pages = $this->page;
             <td class="hidden" id="type_<?php echo $row['id'] ?>"><?php echo $row['type_menu'] ?></td>
             <td class="hidden" id="link_<?php echo $row['id'] ?>"><?php echo $row['link'] ?></td>
             <td class="hidden" id="position_<?php echo $row['id'] ?>"><?php echo $row['position'] ?></td>
+            <td class="hidden" id="alias_<?php echo $row['id'] ?>"><?php echo $this->_Convert->vn2latin($row['title'], true) ?></td>
         </tr>
         <?php
         }

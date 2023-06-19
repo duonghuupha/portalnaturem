@@ -192,5 +192,29 @@
 </div>
 <!-- End formm don vi tinh-->
 
+<!--Form don vi tinh-->
+<div id="modal-view" class="modal fade" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog" style="width:80%">
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    Chi tiết sản phẩm
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row" id="detail_view" style="height:calc(100vh - 200px);overflow:auto">
+                    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-sm btn-danger pull-right" data-dismiss="modal">
+                    <i class="ace-icon fa fa-times"></i>
+                    Đóng
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!-- End formm don vi tinh-->
 
 <script src="<?php echo URL.'/public/' ?>scripts/products/index.js"></script>

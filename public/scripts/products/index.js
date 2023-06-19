@@ -125,3 +125,10 @@ function data_image_edit(json){
         data_img.push(str);
     }
 }
+//////////////////////////////////////////////////////////////////////////////////////////////
+function detail(idh){
+    var html = '', url_view = base_front + '/'+$('#alias_'+idh).text()+'-product-'+btoa(idh)+'.html';
+    html += '<iframe src="'+url_view+'" width="100%" height="100%" style="border:none;"></iframe>';
+    $('#detail_view').html(html);
+    $('#modal-view').modal('show');
+}

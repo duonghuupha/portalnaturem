@@ -26,7 +26,7 @@
 		<script src="<?php echo URL ?>/styles/js/jquery-2.1.4.min.js"></script>
 		<script src="<?php echo URL ?>/styles/js/ace-extra.min.js"></script>
 		<script>
-			var baseUrl = '<?php echo URL ?>';
+			var baseUrl = '<?php echo URL ?>', base_front = '<?php echo URL_FRONT ?>';
 		</script>
 		<script src="<?php echo URL ?>/public/scripts/library.js"></script>
 		<!-----Ckeditor------>

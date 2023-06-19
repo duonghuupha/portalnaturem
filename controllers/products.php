@@ -117,11 +117,36 @@ class Products extends Controller{
     }
 
     function del(){
-
+        $id = base64_decode($_REQUEST['id']); $detail = $this->model->get_info($id);
+        $temp = $this->model->delObj($id);
+        if($temp){
+            $dir_image = DIR_UPLOAD.'/images/product/'.$detail[0]['code'];
+            $this->deleteAll($dir_image);
+            $jsonObj['msg'] = "Xóa dữ liệu thành công";
+            $jsonObj['success'] = true;
+            $this->view->jsonObj = json_encode($jsonObj);
+        }else{
+            $jsonObj['msg'] = "Xóa dữ liệu không thành công";
+            $jsonObj['success'] = false;
+            $this->view->jsonObj = json_encode($jsonObj);
+        }
+        $this->view->render("products/del");
     }
 
     function change(){
-        
+        $id = base64_decode($_REQUEST['id']); $status = $_REQUEST['status'];
+        $data = array("active" => $status);
+        $temp = $this->model->updateObj($id, $data);
+        if($temp){
+            $jsonObj['msg'] = "Cập nhật trạng thái thành công";
+            $jsonObj['success'] = true;
+            $this->view->jsonObj = json_encode($jsonObj);
+        }else{
+            $jsonObj['msg'] = "Cập nhật trạng thái không thành công";
+            $jsonObj['success'] = false;
+            $this->view->jsonObj = json_encode($jsonObj);
+        }
+        $this->view->render("products/change");
     }
 /////////////////////////////////////////////////////////////////////////////////////////////////
     function info(){
@@ -137,4 +162,16 @@ class Products extends Controller{
         $this->view->jsonObj = json_encode($jsonObj);
         $this->view->render("products/image");
     }
+
+    // delete all files and sub-folders from a folder
+    function deleteAll($dir) {
+        foreach(glob($dir . '/*') as $file) {
+            if(is_dir($file))
+                $this->deleteAll($file);
+            else
+                unlink($file);
+        }
+        rmdir($dir);
+    }
 }
+?>
