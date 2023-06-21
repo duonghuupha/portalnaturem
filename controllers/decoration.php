@@ -167,7 +167,7 @@ class Decoration extends Controller{
     }
 
     function update_block_two(){
-        $title1 = $_REQUEST['title_block_2_1']; $title2 = $_REQUEST['title_block_2_1'];
+        $title1 = $_REQUEST['title_block_2_1']; $title2 = $_REQUEST['title_block_2_2'];
         $noidung = $_REQUEST['content_block_2'];
         $image = ($_FILES['image_block_2']['name'] != '') ? $_FILES['image_block_2']['name'] : $_REQUEST['image_block_2_old'];
         $titlebtn = $_REQUEST['title_btn_block_2']; $linkbtn = $_REQUEST['link_btn_block_2'];
