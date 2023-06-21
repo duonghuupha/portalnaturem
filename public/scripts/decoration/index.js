@@ -1,13 +1,13 @@
 var page_pro_block_3 = 1, keyword_block_3 = '', data_block_3 = [], page_pro_block_4 = 1;
 var page_pro = 1, keyword_pro = '', data_block_7 = 0;
 $(function(){
-    $('#block_1, #block_3, #block_4, #block_9, #block_7').hide();
+    $('#block_1, #block_3, #block_4, #block_9, #block_7, #block_2').hide();
 })
 function set_img_block(value){
     $('#img_block').attr('src', baseUrl + '/styles/images/img_block/block_'+value+'.png');
     if(value == 1){
         $('#block_1').show(); $('#block_3').hide(); $('#block_4').hide(); $('#block_9').hide();
-        $('#block_7').hide();
+        $('#block_7').hide(); $('#block_2').hide();
         $('#pro_cate_block_1').load(baseUrl + '/other/combo_cate');
         $.getJSON(baseUrl + '/decoration/block_one', function(data){
             $('#pro_cate_block_1').val(data.data_id.split(',')).trigger('change');
@@ -15,7 +15,7 @@ function set_img_block(value){
         });
     }else if(value == 3){
         $('#block_3').show(); $('#block_1').hide(); $('#block_4').hide(); $('#block_9').hide();
-        $('#block_7').hide();
+        $('#block_7').hide(); $('#block_2').hide();
         $('#pro_cate_block_3').load(baseUrl + '/other/combo_cate');
         $.getJSON(baseUrl + '/decoration/block_three', function(data){
             $('#title_block_3_1').val(data.title_1); $('#title_block_3_2').val(data.title_2);
@@ -36,7 +36,7 @@ function set_img_block(value){
         });
     }else if(value == 5){
         $('#block_3').hide(); $('#block_1').hide(); $('#block_4').show(); $('#block_9').hide();
-        $('#block_7').hide();
+        $('#block_7').hide(); $('#block_2').hide();
         $('#list_data_block_4').load(baseUrl + '/decoration/list_pro_4');
         $.getJSON(baseUrl + '/decoration/block_five', function(data){
             $('#title_block_4_1').val(data.title_1); $('#title_block_4_2').val(data.title_2);
@@ -48,21 +48,29 @@ function set_img_block(value){
         });
     }else if(value == 10){
         $('#block_3').hide(); $('#block_1').hide(); $('#block_4').hide(); $('#block_9').show();
-        $('#block_7').hide();
+        $('#block_7').hide(); $('#block_2').hide();
         $.getJSON(baseUrl + '/decoration/block_night', function(data){
             $('#title_block_9_1').val(data.title_1); $('#title_block_9_2').val(data.title_2);
             $('#number_post_block_9').val(data.number_post);
         })
     }else if(value == 8){
         $('#block_3').hide(); $('#block_1').hide(); $('#block_4').hide(); $('#block_9').hide();
-        $('#block_7').show();
+        $('#block_7').show(); $('#block_2').hide();
         $.getJSON(baseUrl + '/decoration/block_seven', function(data){
             $('#image_block_7_old').val(data.image); $('#pro_id_1').val(data.pro_id_1);
             $('#pro_id_2').val(data.pro_id_2); $('#title_block_7_1').val(data.title_1);
             $('#title_block_7_2').val(data.title_2); $('#content_block_7').val(data.description);
         });
+    }else if(value == 2){
+        $('#block_3').hide(); $('#block_1').hide(); $('#block_4').hide(); $('#block_9').hide();
+        $('#block_7').hide(); $('#block_2').show();
+        $.getJSON(baseUrl + '/decoration/block_two', function(data){
+            $('#image_block_2_old').val(data.image); $('#title_btn_block_2').val(data.title_btn);
+            $('#link_btn_block_2').val(data.link_btn); $('#title_block_2_1').val(data.title_1);
+            $('#title_block_2_2').val(data.title_2); $('#content_block_2').val(data.content);
+        });
     }else{
-        $('#block_1, #block_3, #block_4, #block_9, #block_7').hide();
+        $('#block_1, #block_3, #block_4, #block_9, #block_7, #block_2').hide();
     }
 }
 
@@ -239,6 +247,23 @@ function save_block_7(){
     if(allRequired){
         if($('#image_block_7_old').val().length != 0 || $('#image_block_7').val().length != 0){
             save_reject('#fm_block_7', baseUrl + '/decoration/update_block_seven', baseUrl + '/decoration');
+        }
+    }else{
+        show_message("error", "Chưa điền đủ thông tin");
+    }
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////
+function save_block_2(){
+    var required = $('#fm_block_2 input, #fm_block_2 textarea, #fm_block_2 select').filter('[required]:visible');
+    var allRequired = true;
+    required.each(function(){
+        if($(this).val() == ''){
+            allRequired = false;
+        }
+    });
+    if(allRequired){
+        if($('#image_block_2_old').val().length != 0 || $('#image_block_2').val().length != 0){
+            save_reject('#fm_block_2', baseUrl + '/decoration/update_block_two', baseUrl + '/decoration');
         }
     }else{
         show_message("error", "Chưa điền đủ thông tin");

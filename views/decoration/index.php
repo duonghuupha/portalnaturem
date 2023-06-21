@@ -324,6 +324,72 @@
                             </div>
                         </form>
                     </div>
+                    <!----------------------------------------------------------------------------------------->
+                    <div id="block_2">
+                        <form id="fm_block_2" method="post" enctype="multipart/form-data">
+                            <input id="image_block_2_old" name="image_block_2_old" type="hidden"/>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label for="form-field-username">Tiêu đề 1</label>
+                                    <div>
+                                        <input id="title_block_2_1" name="title_block_2_1" class="form-control"
+                                        placeholder="Tiêu đề 1" style="width:100%" required="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label for="form-field-username">Tiêu đề 2</label>
+                                    <div>
+                                        <input id="title_block_2_2" name="title_block_2_2" class="form-control"
+                                        placeholder="Tiêu đề 2" style="width:100%" required="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label for="form-field-username">Hình ảnh</label>
+                                    <div>
+                                        <input type="file" id="image_block_2" name="image_block_2" class="file_attach" 
+                                        style="width:100%"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label for="form-field-username">Nội dung</label>
+                                    <div>
+                                        <textarea id="content_block_2" name="content_block_2" class="form-control"
+                                        placeholder="Nội dung" style="width:100%;height:100px;resize:none" required=""></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label for="form-field-username">Tiêu đề Button</label>
+                                    <div>
+                                        <input id="title_btn_block_2" name="title_btn_block_2" class="form-control"
+                                        placeholder="Tiêu đề button" style="width:100%" required="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label for="form-field-username">Link button</label>
+                                    <div>
+                                        <input id="link_btn_block_2" name="link_btn_block_2" class="form-control"
+                                        placeholder="Link button" style="width:100%" required="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 text-center">
+                                <button class="btn btn-sm btn-primary" type="button" onclick="save_block_2()">
+                                    <i class="ace-icon fa fa-save"></i>
+                                    Ghi dữ liệu
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.page-content -->

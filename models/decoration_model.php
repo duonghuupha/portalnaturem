@@ -29,6 +29,11 @@ class Decoration_Model extends Model{
         return $query->fetchAll();
     }
 
+    function get_data_block_two(){
+        $query = $this->db->query("SELECT * FROM tbl_block_2 WHERE id = 1");
+        return $query->fetchAll();
+    }
+
 
     function updateObj_block_one($data){
         $query = $this->update("tbl_block_1", $data, "id = 1");
@@ -64,6 +69,11 @@ class Decoration_Model extends Model{
 
     function updateObj_block_seven($data){
         $query = $this->update("tbl_block_7", $data, "id = 1");
+        return $query;
+    }
+
+    function updateObj_block_two($data){
+        $query = $this->update("tbl_block_2", $data, "id = 1");
         return $query;
     }
 }
