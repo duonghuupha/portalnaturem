@@ -6,7 +6,7 @@
                     <i class="ace-icon fa fa-home home-icon"></i>
                     <a href="#">Trang chủ</a>
                 </li>
-                <li class="active">Đơn hàng</li>
+                <li class="active">Khách hàng</li>
             </ul><!-- /.breadcrumb -->
             <div class="nav-search" id="nav-search">
                 <form class="form-search">
@@ -21,7 +21,7 @@
         <div class="page-content">
             <div class="page-header">
                 <h1>
-                    Quản lý đơn hàng
+                    Quản lý thông tin khách hàng
                 </h1>
             </div><!-- /.page-header -->
             <div class="row">
@@ -33,29 +33,4 @@
     </div>
 </div><!-- /.main-content -->
 
-<!--Form don vi tinh-->
-<div id="modal-view" class="modal fade" data-keyboard="false" data-backdrop="static">
-    <div class="modal-dialog" style="width:80%">
-        <div class="modal-content">
-            <div class="modal-header no-padding">
-                <div class="table-header">
-                    Chi tiết đơn hàngg
-                </div>
-            </div>
-            <div class="modal-body">
-                <div class="row" id="detail_view" style="height:calc(100vh - 200px);overflow:auto">
-                    
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-sm btn-danger pull-right" data-dismiss="modal">
-                    <i class="ace-icon fa fa-times"></i>
-                    Đóng
-                </button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div>
-<!-- End formm don vi tinh-->
-
-<script src="<?php echo URL.'/public/' ?>scripts/orders/index.js"></script>
+<script src="<?php echo URL.'/public/' ?>scripts/customers/index.js"></script>
