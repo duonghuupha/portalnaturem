@@ -13,6 +13,12 @@
             <div class="page-header">
                 <h1>
                     Thiết kế giao diện
+                    <small class="pull-right">
+                        <button class="btn btn-sm btn-primary" type="button" onclick="window.location.href='<?php echo URL.'/slider' ?>'">
+                            <i class="ace-icon fa fa-image"></i>
+                            Quản lý ảnh slide
+                        </button>
+                    </small>
                 </h1>
             </div><!-- /.page-header -->
             <div class="row">
