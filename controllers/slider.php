@@ -49,7 +49,7 @@ class Slider extends Controller{
                         "link_btn" => $linkbtn, "image" => $image);
         $temp = $this->model->updateObj($id, $data);
         if($temp){
-            if($_FILES['image']['image'] != ''){
+            if($_FILES['image']['name'] != ''){
                 move_uploaded_file($_FILES['image']['tmp_name'], DIR_UPLOAD.'/images/slider/'.$image);
             }
             $jsonObj['msg'] = "Ghi dữ liệu thành công";
