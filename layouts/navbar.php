@@ -21,17 +21,6 @@ if(!isset($_SESSION['data'])){
         </div>
         <div class="navbar-buttons navbar-header pull-right" role="navigation">
             <ul class="nav ace-nav">
-                <!--<li class="purple dropdown-modal">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0)"
-                    onclick="load_list_notify()">
-                        <i class="ace-icon fa fa-bell icon-animated-bell"></i>
-                        <span class="badge badge-important" id="total_notify">0</span>
-                    </a>
-                    <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close"
-                    id="list_notify_modal">
-
-                    </ul>
-                </li>-->
                 <li class="light-blue dropdown-modal">
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
                         <img class="nav-user-photo" src="<?php echo URL.'/' ?>styles/images/default.png" alt="Jason's Photo" />
@@ -45,7 +34,7 @@ if(!isset($_SESSION['data'])){
                     </a>
                     <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                         <li>
-                            <a href="<?php echo URL.'/profile' ?>">
+                            <a href="javascript:void(0)" onclick="update_profile()">
                                 <i class="ace-icon fa fa-user"></i>
                                 Tài khoản
                             </a>

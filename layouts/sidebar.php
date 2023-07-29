@@ -92,13 +92,19 @@
             </a>
             <b class="arrow"></b>
         </li>
+        <?php
+        if($this->_Info[0]['id'] == 1){
+        ?>
         <li class="hover">
             <a href="<?php echo URL.'/users' ?>">
                 <i class="menu-icon fa fa-users"></i>
-                <span class="menu-text"> Quản lý người dùng </span>
+                <span class="menu-text"> Người dùng </span>
             </a>
             <b class="arrow"></b>
         </li>
+        <?php
+        }
+        ?>
     </ul><!-- /.nav-list -->
 
     <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
