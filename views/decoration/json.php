@@ -9,13 +9,11 @@ $jsonObj = $this->jsonObj; $perpage = $this->perpage; $pages = $this->page;
     <thead>
         <tr role="row">
             <th class="text-center" style="width:20px">#</th>
-            <th class="text-center" style="width:120px;">Hình ảnh</th>
-            <th class="" style="width:350px;">Tiêu đề 1</th>
-            <th class="" style="width:350px;">Tiêu đề 2</th>
-            <th class="" style="width:250px;">Tiêu đề button</th>
-            <th class="" style="width:250px;">Link button</th>
-            <th class="text-center" style="width:100px;">Kích hoạt</th>
-            <th class="text-center" style="width:100px;">Thao tác</th>
+            <th class="text-center" style="width:120px">Mã block</th>
+            <th class="">Tiêu đề</th>
+            <th class="text-center">Thứ tự</th>
+            <th class="text-center" style="width:80px;">Kích hoạt</th>
+            <th class="text-center" style="width:80px;">Thao tác</th>
         </tr>
     </thead>
     <tbody>
@@ -27,16 +25,19 @@ $jsonObj = $this->jsonObj; $perpage = $this->perpage; $pages = $this->page;
         ?>
         <tr role="row" class="<?php echo $class ?>">
             <td class="text-center"><?php echo $i ?></td>
-            <td class="text-center">
-                <img src="<?php echo URL.'/public/images/slider/'.$row['image'] ?>" width="50"/>
+            <td class="text-center"><?php echo $row['code'] ?></td>
+            <td>
+                <?php echo $row['title'] ?>         
             </td>
-            <td class=""><?php echo $row['title_1'] ?></td>
-            <td class=""><?php echo $row['title_2'] ?></td>
-            <td class=""><?php echo $row['title_btn'] ?></td>
-            <td class=""><?php echo $row['link_btn'] ?></td>
+            <td class="text-center" style="cursor: pointer" ondblclick="edit_cell(<?php echo $row['id'].', '.$row['order_block'] ?>)">
+                <span id="orderblock_<?php echo $row['id'] ?>"><?php echo $row['order_block'] ?></span>
+                <input id="order_<?php echo $row['id'] ?>" name="order_<?php echo $row['id'] ?>"
+                value="<?php echo $row['order_block'] ?>" type="text" onkeypress="validate(event)"
+                size="5" style="text-align:center;display:none" class="form-control order_block"/>
+            </td>
             <td class="text-center">
                 <?php
-                if($row['active'] == 1){
+                if($row['status'] == 1){
                     echo '<a href="javascript:void(0)" onclick="change('.$row['id'].', 0)"><img src="'.URL.'/styles/images/publish.png"/></a>';
                 }else{
                     echo '<a href="javascript:void(0)" onclick="change('.$row['id'].', 1)"><img src="'.URL.'/styles/images/unpublish.png"/></a>';
@@ -46,11 +47,12 @@ $jsonObj = $this->jsonObj; $perpage = $this->perpage; $pages = $this->page;
             </td>
             <td class="text-center">
                 <div class="action-buttons">
-                    <a class="green" href="javascript:void(0)" onclick="edit(<?php echo $row['id'] ?>)">
+                    <a class="green" href="javascript:void(0)" onclick="edit(<?php echo $row['id'] ?>)" id="btn_edit_<?php echo $row['id'] ?>">
                         <i class="ace-icon fa fa-pencil bigger-130"></i>
                     </a>
-                    <a class="red" href="javascript:void(0)" onclick="del(<?php echo $row['id'] ?>)">
-                        <i class="ace-icon fa fa-trash bigger-130"></i>
+                    <a class="blue" href="javascript:void(0)" onclick="save_cell(<?php echo $row['id'] ?>)" id="btn_save_<?php echo $row['id'] ?>"
+                    style="display:none">
+                        <i class="ace-icon fa fa-save bigger-130"></i>
                     </a>
                 </div>
             </td>
@@ -70,7 +72,7 @@ $jsonObj = $this->jsonObj; $perpage = $this->perpage; $pages = $this->page;
         <?php
         if($jsonObj['total'] > $perpage){
             $pagination = $this->_Convert->pagination($jsonObj['total'], $pages, $perpage);
-            $createlink = $this->_Convert->createLinks($jsonObj['total'], $perpage, $pagination['number'], 'view_page_slider', 1);
+            $createlink = $this->_Convert->createLinks($jsonObj['total'], $perpage, $pagination['number'], 'view_page_decoration', 1);
         ?>
         <div class="dataTables_paginate paging_simple_numbers" id="dynamic-table_paginate">
             <ul class="pagination">
