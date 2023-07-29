@@ -10,7 +10,8 @@ $jsonObj = $this->jsonObj; $perpage = $this->perpage; $pages = $this->page;
         <thead>
             <tr role="row">
                 <th class="text-center" style="width:20px">#</th>
-                <th class="text-center" style="width:120px">Mã slide</th>
+                <th class="text-center" style="width:100px">Mã slide</th>
+                <th class="">Tiêu đề</th>
                 <th class="text-center">Hình ảnh</th>
                 <th class="text-center" style="width:80px;">Kích hoạt</th>
                 <th class="text-center" style="width:80px;">Thao tác</th>
@@ -26,25 +27,28 @@ $jsonObj = $this->jsonObj; $perpage = $this->perpage; $pages = $this->page;
             <tr role="row" class="<?php echo $class ?>">
                 <td class="text-center"><?php echo $i ?></td>
                 <td class="text-center"><?php echo $row['code'] ?></td>
+                <td>
+                    <?php echo $row['title_1']."<br/>".$row['title_2'] ?>
+                </td>
                 <td class="text-center">
-                    <img src="<?php echo URL.'/public/images/slide/'.$row['image'] ?>" height="50"/>
+                    <img src="<?php echo URL.'/public/images/slider/'.$row['image'] ?>" height="50"/>
                 </td>
                 <td class="text-center">
                     <?php
                     if($row['status'] == 1){
-                        echo '<a href="javascript:void(0)" onclick="change_slide('.$row['id'].', 0)"><img src="'.URL.'/styles/images/publish.png"/></a>';
+                        echo '<a href="javascript:void(0)" onclick="change_block_one('.$row['id'].', 0)"><img src="'.URL.'/styles/images/publish.png"/></a>';
                     }else{
-                        echo '<a href="javascript:void(0)" onclick="change_slide('.$row['id'].', 1)"><img src="'.URL.'/styles/images/unpublish.png"/></a>';
+                        echo '<a href="javascript:void(0)" onclick="change_block_one('.$row['id'].', 1)"><img src="'.URL.'/styles/images/unpublish.png"/></a>';
 
                     }
                     ?>
                 </td>
                 <td class="text-center">
                     <div class="action-buttons">
-                        <a class="green" href="javascript:void(0)" onclick="edit_slide(<?php echo $row['id'] ?>)">
+                        <a class="green" href="javascript:void(0)" onclick="edit_block_1(<?php echo $row['id'] ?>)">
                             <i class="ace-icon fa fa-pencil bigger-130"></i>
                         </a>
-                        <a class="red" href="javascript:void(0)" onclick="del_slide(<?php echo $row['id'] ?>)">
+                        <a class="red" href="javascript:void(0)" onclick="del_block_1(<?php echo $row['id'] ?>)">
                             <i class="ace-icon fa fa-trash bigger-130"></i>
                         </a>
                     </div>
@@ -65,7 +69,7 @@ $jsonObj = $this->jsonObj; $perpage = $this->perpage; $pages = $this->page;
             <?php
             if($jsonObj['total'] > $perpage){
                 $pagination = $this->_Convert->pagination($jsonObj['total'], $pages, $perpage);
-                $createlink = $this->_Convert->createLinks($jsonObj['total'], $perpage, $pagination['number'], 'view_page_slide', 1);
+                $createlink = $this->_Convert->createLinks($jsonObj['total'], $perpage, $pagination['number'], 'view_page_block_one', 1);
             ?>
             <div class="dataTables_paginate paging_simple_numbers" id="dynamic-table_paginate">
                 <ul class="pagination">

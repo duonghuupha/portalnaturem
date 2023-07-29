@@ -12,7 +12,7 @@ function edit_block_1(idh){
     url_block_one = baseUrl + '/block_one/update?id='+btoa(idh);
 }
 
-function del_block_one(idh){
+function del_block_1(idh){
     var data_str = "id="+btoa(idh);
     del_data(data_str, "Bạn có chắc chắn muốn xóa bảng ghi này?", baseUrl + '/block_one/del', '#content-decoration', baseUrl + '/block_one/json?page='+page_block_one);
 }
@@ -40,7 +40,7 @@ function check_size(){
                 image.onload = function () {
                     var height = this.height;
                     var width = this.width;
-                    if (height != 655 || width != 1920){
+                    if (height != 536 || width != 639){
                         show_message("error", "Kích thước ảnh không đúng");
                         $('.file_attach').ace_file_input('reset_input'); 
                     }

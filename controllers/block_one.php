@@ -15,9 +15,10 @@ class Block_one extends Controller{
     }
 
     function add(){
-        $code = time();
+        $code = time(); $title1 = $_REQUEST['title_1_block_1']; $title2 = $_REQUEST['title_2_block_1'];
         $image = $this->_Convert->convert_file($_FILES['image_block_1']['name'], 'img_block_1');
-        $data = array("image" => $image, "status"=> 1, "code" => $code, "create_at" => date("Y-m-d H:i:s"));
+        $data = array("image" => $image, "status"=> 1, "code" => $code, "create_at" => date("Y-m-d H:i:s"),
+                        "title_1" => $title1, "title_2" => $title2);
         $temp = $this->model->addObj($data);
         if($temp){
             move_uploaded_file($_FILES['image_block_1']['tmp_name'], DIR_UPLOAD.'/images/slider/'.$image);
@@ -34,19 +35,26 @@ class Block_one extends Controller{
 
     function update(){
         $id = base64_decode($_REQUEST['id']); $image_old = $_REQUEST['image_old_block_1'];
-        $image = $this->_Convert->convert_file($_FILES['image_block_1']['name'], 'img_block_1');
-        $data = array("image" => $image, "create_at" => date("Y-m-d H:i:s"));
+        $title1 = $_REQUEST['title_1_block_1']; $title2 = $_REQUEST['title_2_block_1'];
+        $image = ($_FILES['image_block_1']['name'] != '') ? $this->_Convert->convert_file($_FILES['image_block_1']['name'], 'img_block_1') : $image_old;
+        $data = array("image" => $image, "create_at" => date("Y-m-d H:i:s"), "title_1" => $title1, "title_2" => $title2);
         $temp = $this->model->updateObj($id, $data);
         if($temp){
-            if(move_uploaded_file($_FILES['image_block_1']['tmp_name'], DIR_UPLOAD.'/images/slider/'.$image)){
-                unlink(DIR_UPLOAD.'/images/slider/'.$image_old);
-                $jsonObj['msg'] = "Ghi dữ liệu thành công";
-                $jsonObj['success'] = true;
-                $this->view->jsonObj = json_encode($jsonObj);
+            if($_FILES['image_block_1']['name'] != ''){
+                if(move_uploaded_file($_FILES['image_block_1']['tmp_name'], DIR_UPLOAD.'/images/slider/'.$image)){
+                    unlink(DIR_UPLOAD.'/images/slider/'.$image_old);
+                    $jsonObj['msg'] = "Ghi dữ liệu thành công";
+                    $jsonObj['success'] = true;
+                    $this->view->jsonObj = json_encode($jsonObj);
+                }else{
+                    $data_u = array("image" => $image_old);
+                    $this->model->updateObj($id, $data_u);
+                    $jsonObj['msg'] = "Quá trình tải ảnh không thành công, thông tin danh mục đã được lưu";
+                    $jsonObj['success'] = true;
+                    $this->view->jsonObj = json_encode($jsonObj);
+                }
             }else{
-                $data_u = array("image" => $image_old);
-                $this->model->updateObj($id, $data_u);
-                $jsonObj['msg'] = "Quá trình tải ảnh không thành công, thông tin danh mục đã được lưu";
+                $jsonObj['msg'] = "Ghi dữ liệu thành công";
                 $jsonObj['success'] = true;
                 $this->view->jsonObj = json_encode($jsonObj);
             }
