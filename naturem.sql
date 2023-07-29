@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jul 29, 2023 at 10:23 AM
+-- Generation Time: Jul 29, 2023 at 06:38 PM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.30
 
@@ -93,6 +93,14 @@ CREATE TABLE `tbl_block_1` (
   `status` int(11) NOT NULL,
   `create_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tbl_block_1`
+--
+
+INSERT INTO `tbl_block_1` (`id`, `code`, `title_1`, `title_2`, `image`, `status`, `create_at`) VALUES
+(1, 1690620217, 'Naturem', 'SLIM helps reduce weight, Cholesterol, lipid in blood', '1690620217_img_block_1.png', 1, '2023-07-29 15:50:05'),
+(2, 1690620731, 'Naturem', 'Cardio helps prevent Atherosclerosis reduce fat in the blood ', '1690620731_img_block_1.png', 1, '2023-07-29 15:52:11');
 
 -- --------------------------------------------------------
 
@@ -419,6 +427,7 @@ INSERT INTO `tbl_setting_payment` (`id`, `ship`, `vat`) VALUES
 
 CREATE TABLE `tbl_users` (
   `id` int(11) NOT NULL,
+  `code` int(11) NOT NULL,
   `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `fullname` text COLLATE utf8_unicode_ci NOT NULL,
@@ -430,8 +439,9 @@ CREATE TABLE `tbl_users` (
 -- Dumping data for table `tbl_users`
 --
 
-INSERT INTO `tbl_users` (`id`, `username`, `password`, `fullname`, `roles`, `active`) VALUES
-(1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Administrator', '', 1);
+INSERT INTO `tbl_users` (`id`, `code`, `username`, `password`, `fullname`, `roles`, `active`) VALUES
+(1, 0, 'admin', 'b3aca92c793ee0e9b1a9b0a5f5fc044e05140df3', 'Administrator', '', 1),
+(2, 1690617919, 'duonghuupha', '7ce0359f12857f2a90c7de465f40a95f01cb5da9', 'Dương Hữu Phả', '', 1);
 
 --
 -- Indexes for dumped tables
@@ -547,7 +557,7 @@ ALTER TABLE `tbl_block`
 -- AUTO_INCREMENT for table `tbl_block_1`
 --
 ALTER TABLE `tbl_block_1`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_cart`
@@ -619,7 +629,7 @@ ALTER TABLE `tbl_setting_payment`
 -- AUTO_INCREMENT for table `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
