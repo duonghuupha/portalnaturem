@@ -60,8 +60,10 @@ function edit(idh){
     }else if(idh == 5){
         
     }else if(idh == 6){
-        
+        $('#content-decoration').load(baseUrl + '/block_six/form');
+        $('#btn_block').attr('onclick', ''); $('#btn_slide').hide();
     }else if(idh == 7){
-
+        $('#content-decoration').load(baseUrl + '/block_seven/json');
+        $('#btn_slide').show(); $('#btn_block').attr('onclick', 'add_block_7()');
     }
 }

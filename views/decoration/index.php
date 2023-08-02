@@ -52,3 +52,5 @@
 <script src="<?php echo URL.'/public/' ?>scripts/decoration/block_two.js"></script>
 <script src="<?php echo URL.'/public/' ?>scripts/decoration/block_three.js"></script>
 <script src="<?php echo URL.'/public/' ?>scripts/decoration/block_four.js"></script>
+<script src="<?php echo URL.'/public/' ?>scripts/decoration/block_six.js"></script>
+<script src="<?php echo URL.'/public/' ?>scripts/decoration/block_seven.js"></script>
