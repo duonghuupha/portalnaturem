@@ -50,3 +50,4 @@
 <script src="<?php echo URL.'/public/' ?>scripts/decoration/index.js"></script>
 <script src="<?php echo URL.'/public/' ?>scripts/decoration/block_one.js"></script>
 <script src="<?php echo URL.'/public/' ?>scripts/decoration/block_two.js"></script>
+<script src="<?php echo URL.'/public/' ?>scripts/decoration/block_three.js"></script>

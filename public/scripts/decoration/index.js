@@ -51,34 +51,16 @@ function edit(idh){
     }else if(idh == 2){
         $('#content-decoration').load(baseUrl + '/block_two/form');
         $('#btn_block').attr('onclick', ''); $('#btn_slide').hide();
-        
     }else if(idh == 3){
-        $('#content-decoration').load(baseUrl + '/block_three/json');
-        $('#btn_block').attr('onclick', 'add_block_3()');
-        $('#btn_slide').show();
+        $('#content-decoration').load(baseUrl + '/block_three/form');
+        $('#btn_block').attr('onclick', ''); $('#btn_slide').hide();
     }else if(idh == 4){
-        $('#content-decoration').load(baseUrl + '/block_four/form');
-        $('#btn_block').attr('onclick', '');
-        $('#btn_slide').hide();
+        
     }else if(idh == 5){
-        $('#content-decoration').load(baseUrl + '/block_five/form');
-        $('#btn_block').attr('onclick', '');
-        $('#btn_slide').hide();
+        
     }else if(idh == 6){
-        $('#content-decoration').load(baseUrl + '/block_six/json');
-        $('#btn_block').attr('onclick', 'add_block_6()');
-        $('#btn_slide').show();
+        
     }else if(idh == 7){
 
-    }else if(idh == 8){
-
-    }else if(idh == 9){
-        $('#content-decoration').load(baseUrl + '/block_night/form');
-        $('#btn_block').attr('onclick', '');
-        $('#btn_slide').hide();
-    }else if(idh == 10){
-        $('#content-decoration').load(baseUrl + '/block_ten/json');
-        $('#btn_block').attr('onclick', 'add_block_10()');
-        $('#btn_slide').show();
     }
 }

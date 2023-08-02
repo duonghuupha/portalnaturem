@@ -6,7 +6,7 @@ class Block_two extends Controller{
     }
 
     function form(){
-        $jsonObj= $this->model->get_info($id);
+        $jsonObj= $this->model->get_info();
         $this->view->jsonObj = $jsonObj;
         $this->view->cate = $this->model->get_data_cate();
         $this->view->render("block_two/form");
