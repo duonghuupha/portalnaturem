@@ -1,4 +1,4 @@
-var url = '', page = 1;
+var url = '', page = 1, deco_id = 0;
 $(function(){
     $('#list-data').load(baseUrl + '/decoration/json');
     $('#btn_slide').hide();
@@ -49,9 +49,9 @@ function edit(idh){
         $('#content-decoration').load(baseUrl + '/block_one/json');
         $('#btn_slide').show(); $('#btn_block').attr('onclick', 'add_block_1()');
     }else if(idh == 2){
-        $('#content-decoration').load(baseUrl + '/block_two/json');
-        $('#btn_block').attr('onclick', 'add_block_2()');
-        $('#btn_slide').show();
+        $('#content-decoration').load(baseUrl + '/block_two/form');
+        $('#btn_block').attr('onclick', ''); $('#btn_slide').hide();
+        
     }else if(idh == 3){
         $('#content-decoration').load(baseUrl + '/block_three/json');
         $('#btn_block').attr('onclick', 'add_block_3()');
