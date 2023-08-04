@@ -185,6 +185,15 @@ function check_image_ext(text){
         return true;
     }
 }
+
+function validate_email(email){
+    filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if (filter.test(email)) {
+        return true;
+    }else{
+        return false;
+    }
+}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function save_reject(id_form, post_url, url_reject){
     var xhr = new XMLHttpRequest();
