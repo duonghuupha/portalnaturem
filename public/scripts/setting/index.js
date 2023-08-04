@@ -1,7 +1,3 @@
-$(function(){
-    demo_ship();
-});
-
 function save_global(){
     var required = $('#fm-global input, #fm-global textarea, #fm-global select').filter('[required]:visible');
     var allRequired = true, img = true;
