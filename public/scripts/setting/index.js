@@ -93,7 +93,10 @@ function cal_price(){
             var data_str = "fromcode="+btoa(fromcode)+"&tocode="+btoa(tocode)+'&pounds='+btoa(pounds)+"&ounces="+btoa(ounces);
             $.getJSON(baseUrl + '/setting/cal_price?'+data_str, function(data){
                 $('.overlay').hide();
-                var item = data.Package.Postage, html = '';
+                var item_ground = data.ground.Package.Postage;
+                var item_priority = data.priority.Package.Postage;
+                var item_express = data.express.Package.Postage;
+                var html = '';
                 /************************************************************** */
                 $('#to_add').html($('#demo_add').val()); $('#to_city_state').html($('#demo_city').val()+', '+$('#demo_state').val());
                 $('#to_zip').html(tocode); $('#to_country').html('USA');
@@ -103,7 +106,21 @@ function cal_price(){
                     html += '<td class="text-center">'+pounds+'</td>';
                     html += '<td class="text-center">'+ounces+'</td>';
                     html += '<td class="text-left">USPS Ground Advantage</td>';
-                    html += '<td class="text-right"><b>'+item.Rate+'</b></td>';
+                    html += '<td class="text-right"><b>'+item_ground.Rate+'</b></td>';
+                html += '</tr>';
+                html += '<tr>';
+                    html += '<td class="text-center">2</td>';
+                    html += '<td class="text-center">'+pounds+'</td>';
+                    html += '<td class="text-center">'+ounces+'</td>';
+                    html += '<td class="text-left">Priority Mail</td>';
+                    html += '<td class="text-right"><b>'+item_priority.Rate+'</b></td>';
+                html += '</tr>';
+                html += '<tr>';
+                    html += '<td class="text-center">3</td>';
+                    html += '<td class="text-center">'+pounds+'</td>';
+                    html += '<td class="text-center">'+ounces+'</td>';
+                    html += '<td class="text-left">Priority Mail Express 2-Day</td>';
+                    html += '<td class="text-right"><b>'+item_express.Rate+'</b></td>';
                 html += '</tr>';
                 $('#tbody').html(html);
             });

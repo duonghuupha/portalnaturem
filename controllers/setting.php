@@ -75,8 +75,14 @@ class Setting extends Controller{
     function cal_price(){
         $fromcode = base64_decode($_REQUEST['fromcode']); $tocode = base64_decode($_REQUEST['tocode']);
         $pounds = base64_decode($_REQUEST['pounds']); $ounces = base64_decode($_REQUEST['ounces']);
+        $jsonObj['ground'] = $this->ground($fromcode, $tocode, $pounds, $ounces);
+        $jsonObj['priority'] = $this->priority($fromcode, $tocode, $pounds, $ounces);
+        $jsonObj['express'] = $this->express($fromcode, $tocode, $pounds, $ounces);
+        $this->view->jsonObj = json_encode($jsonObj);
+        $this->view->render("setting/cal_price");
+    }
 
-        /////////////////////////////////////////////////////////////////////////////////////////////
+    function ground($fromcode, $tocode, $pounds, $ounces){
         $input_xml = <<<EOXML
         <RateV4Request USERID="9SVKHEZ345713" PASSWORD="I4784LR04T2714A">
             <Revision>2</Revision>
@@ -106,10 +112,76 @@ class Setting extends Controller{
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 300);
         $data = curl_exec($ch);
         curl_close($ch);
-        $array_data = json_encode(simplexml_load_string($data));
-        //////////////////////////////////////////////////////////////////////////////////
-        $this->view->jsonObj = $array_data;
-        $this->view->render("setting/cal_price");
+        $array_data = simplexml_load_string($data);
+        return $array_data;
+    }
+
+    function priority($fromcode, $tocode, $pounds, $ounces){
+        $input_xml = <<<EOXML
+        <RateV4Request USERID="9SVKHEZ345713" PASSWORD="I4784LR04T2714A">
+            <Revision>2</Revision>
+            <Package ID="0">
+                <Service>PRIORITY</Service>
+                <ZipOrigination>$fromcode</ZipOrigination>
+                <ZipDestination>$tocode</ZipDestination>
+                <Pounds>$pounds</Pounds>
+                <Ounces>$ounces</Ounces>
+                <Container></Container>
+                <Width></Width>
+                <Length></Length>
+                <Height></Height>
+                <Girth></Girth>
+                <Machinable>TRUE</Machinable>
+            </Package>
+        </RateV4Request>
+        EOXML;
+        $fields = array(
+            'API' => 'RateV4',
+            'XML' => $input_xml
+        );
+        $url = 'https://secure.shippingapis.com/ShippingAPI.dll?' . http_build_query($fields);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 300);
+        $data = curl_exec($ch);
+        curl_close($ch);
+        $array_data = simplexml_load_string($data);
+        return $array_data;
+    }
+
+    function express($fromcode, $tocode, $pounds, $ounces){
+        $input_xml = <<<EOXML
+        <RateV4Request USERID="9SVKHEZ345713" PASSWORD="I4784LR04T2714A">
+            <Revision>2</Revision>
+            <Package ID="0">
+                <Service>PRIORITY MAIL EXPRESS</Service>
+                <ZipOrigination>$fromcode</ZipOrigination>
+                <ZipDestination>$tocode</ZipDestination>
+                <Pounds>$pounds</Pounds>
+                <Ounces>$ounces</Ounces>
+                <Container></Container>
+                <Width></Width>
+                <Length></Length>
+                <Height></Height>
+                <Girth></Girth>
+                <Machinable>TRUE</Machinable>
+            </Package>
+        </RateV4Request>
+        EOXML;
+        $fields = array(
+            'API' => 'RateV4',
+            'XML' => $input_xml
+        );
+        $url = 'https://secure.shippingapis.com/ShippingAPI.dll?' . http_build_query($fields);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 300);
+        $data = curl_exec($ch);
+        curl_close($ch);
+        $array_data = simplexml_load_string($data);
+        return $array_data;
     }
 }
 ?>
