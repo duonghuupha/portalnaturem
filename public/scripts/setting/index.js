@@ -1,5 +1,5 @@
 function save_global(){
-    var required = $('#fm-global input, #fm-global textarea, #fm-global select').filter('[required]:visible');
+    var required = $('#fm-g lobal input, #fm-global textarea, #fm-global select').filter('[required]:visible');
     var allRequired = true, img = true;
     required.each(function(){
         if($(this).val() == ''){
@@ -67,16 +67,50 @@ function demo_check_code(){
                 $('#demo_city').val(data.results[code][0].city);
                 //console.log(data.results[code][0].state);
             }else{
-                $('.overlay').hide();
+                $('.overlay').hide(); $('#zipcode').val(null);
                 show_message('error', data.msg);
             }
         });
     }else{
+        $('#zipcode').val(null);
         show_message('error', "Zip code phải là sạng số và đủ 5 số");
     }
 }
 
 function cal_price(){
-    var tocode = $('#zipcode').val(), fromcode= $('#from_code').val();
-    console.log(tocode+' '+fromcode);
+    var required = $('#fm-demo-ship input, #fm-demo-ship textarea, #fm-demo-ship select').filter('[required]:visible');
+    var allRequired = true, img = true;
+    required.each(function(){
+        if($(this).val() == ''){
+            allRequired = false;
+        }
+    });
+    if(allRequired){
+        $('.overlay').show();
+        var tocode = $('#zipcode').val(), fromcode= $('#from_code').val();
+        var pounds = $('#pounds').val(), ounces = $('#ounces').val();
+        if(tocode.length != 0 && pounds.length != 0 && ounces.length  != 0){
+            var data_str = "fromcode="+btoa(fromcode)+"&tocode="+btoa(tocode)+'&pounds='+btoa(pounds)+"&ounces="+btoa(ounces);
+            $.getJSON(baseUrl + '/setting/cal_price?'+data_str, function(data){
+                $('.overlay').hide();
+                var item = data.Package.Postage, html = '';
+                /************************************************************** */
+                $('#to_add').html($('#demo_add').val()); $('#to_city_state').html($('#demo_city').val()+', '+$('#demo_state').val());
+                $('#to_zip').html(tocode); $('#to_country').html('USA');
+                /************************************************************** */
+                html += '<tr>';
+                    html += '<td class="text-center">1</td>';
+                    html += '<td class="text-center">'+pounds+'</td>';
+                    html += '<td class="text-center">'+ounces+'</td>';
+                    html += '<td class="text-left">USPS Ground Advantage</td>';
+                    html += '<td class="text-right"><b>'+item.Rate+'</b></td>';
+                html += '</tr>';
+                $('#tbody').html(html);
+            });
+        }else{
+            show_message("error", "Bạn chưa nhập đủ thông tin");
+        }
+    }else{
+        show_message("error", "Bạn chưa nhập đủ thông tin");
+    }
 }

@@ -127,6 +127,18 @@ $global = $this->global; $pay = $this->payment;
                                 </div>
                             </div>
                         </div>
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label for="form-field-username">Gia công (Tự đóng gói)</label>
+                                <div>
+                                    <label>
+                                        <input name="machinable" class="ace ace-switch ace-switch-4" type="checkbox"
+                                        id="machinable" value="1" checked="">
+                                        <span class="lbl"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-xs-12 text-center">
                             <button class="btn btn-sm btn-warning" onclick="demo_ship()" type="button">
                                 <i class="ace-icon fa fa-ship"></i>
@@ -146,7 +158,7 @@ $global = $this->global; $pay = $this->payment;
 
 <!--Form don vi tinh-->
 <div id="modal-data" class="modal fade" data-keyboard="false" data-backdrop="static">
-    <div class="modal-dialog">
+    <div class="modal-dialog" style="width:80%">
         <div class="modal-content" id="form">
             <div class="modal-header no-padding">
                 <div class="table-header">
@@ -155,22 +167,9 @@ $global = $this->global; $pay = $this->payment;
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <form id="fm" method="post" enctype="multipart/form-data">
+                    <form id="fm-demo-ship" method="post" enctype="multipart/form-data">
                         <input id="from_code" name="from_code" type="hidden" value="<?php echo $pay[0]['zip_code'] ?>"/>
                         <div class="col-xs-6" style="border-right:1px  solid #307ECC">
-                            <div class="col-xs-12">
-                                <div class="form-group">
-                                    <label for="form-field-username">
-                                        <b>Từ</b>    
-                                    </label>
-                                    <div>
-                                        <span><?php echo $pay[0]['address'] ?></span><br/>
-                                        <span><?php echo $pay[0]['city'].', '.$pay[0]['state'] ?></span><br/>
-                                        <span><?php echo $pay[0]['zip_code'] ?></span><br/>
-                                        <span><?php echo $pay[0]['country'] ?></span>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="col-xs-12">
                                 <div class="form-group" style="margin-bottom:0;">
                                     <label for="form-field-username">
@@ -190,7 +189,7 @@ $global = $this->global; $pay = $this->payment;
                             </div>
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    <label for="form-field-username">State</label>
+                                    <label for="form-field-username">Tiểu bang / State</label>
                                     <div>
                                         <input name="demo_state" id="demo_state" required="" class="form-control"
                                         placeholder="State" style="width:100%" type="text" readonly=""/>
@@ -199,7 +198,7 @@ $global = $this->global; $pay = $this->payment;
                             </div>
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    <label for="form-field-username">Code state</label>
+                                    <label for="form-field-username">Mã tiểu bang / Code state</label>
                                     <div>
                                         <input name="demo_codestate" id="demo_codestate" required="" class="form-control"
                                         placeholder="Code state" style="width:100%" type="text" readonly=""/>
@@ -208,7 +207,7 @@ $global = $this->global; $pay = $this->payment;
                             </div>
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    <label for="form-field-username">Thành phố</label>
+                                    <label for="form-field-username">Thành phố / City</label>
                                     <div>
                                         <input name="demo_city" id="demo_city" required="" class="form-control"
                                         placeholder="City" style="width:100%" type="text"/>
@@ -217,16 +216,79 @@ $global = $this->global; $pay = $this->payment;
                             </div>
                             <div class="col-xs-12">
                                 <div class="form-group">
-                                    <label for="form-field-username">Địa chỉ</label>
+                                    <label for="form-field-username">Địa chỉ / Address</label>
                                     <div>
                                         <input name="demo_add" id="demo_add" required="" class="form-control"
                                         placeholder="Địa chỉ" style="width:100%" type="text"/>
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label for="form-field-username">Pounds (1lb = 0.454kg)</label>
+                                    <div>
+                                        <input name="pounds" id="pounds" required="" class="form-control"
+                                        placeholder="Pounds" style="width:100%" type="text" onkeypress="validate(event)"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label for="form-field-username">Ounces (1oz = 0.028kg)</label>
+                                    <div>
+                                        <input name="ounces" id="ounces" required="" class="form-control"
+                                        placeholder="Ounces" style="width:100%" type="text" onkeypress="validate(event)"/>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-xs-6">
-                            
+                        <div class="col-xs-6" id="info_ship">
+                            <div class="col-xs-6" id="from_ship">
+                                <div class="form-group">
+                                    <label for="form-field-username">
+                                        <b>Từ</b>    
+                                    </label>
+                                    <div>
+                                        <span><?php echo $pay[0]['address'] ?></span><br/>
+                                        <span><?php echo $pay[0]['city'].', '.$pay[0]['state'] ?></span><br/>
+                                        <span><?php echo $pay[0]['zip_code'] ?></span><br/>
+                                        <span><?php echo $pay[0]['country'] ?></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label for="form-field-username">
+                                        <b>Đến</b>    
+                                    </label>
+                                    <div>
+                                        <span id="to_add"></span><br/>
+                                        <span id="to_city_state"></span><br/>
+                                        <span id="to_zip"></span><br/>
+                                        <span id="to_country"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <table 
+                                    id="dynamic-table" 
+                                    class="table table-striped table-bordered table-hover dataTable no-footer" 
+                                    role="grid"
+                                    aria-describedby="dynamic-table_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="text-center" style="width:20px">#</th>
+                                            <th class="text-center" style="width:70px">Pounds</th>
+                                            <th class="text-center" style="width:70px">Ounces</th>
+                                            <th class="text-left">Mail Service</th>
+                                            <th class="text-right">Phí vận chuyển ($)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbody">
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </form>
                 </div>
