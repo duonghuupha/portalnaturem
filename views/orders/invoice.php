@@ -1,5 +1,5 @@
 <?php
-$item = $this->json; $add = $this->add; $cus = $this->cus;
+$item = $this->json; $add = $this->add; $cus = $this->cus; $set = $this->setting;
 ?>
 <div class="row" style="margin:0;">
     <div class="col-sm-10 col-sm-offset-1">
@@ -124,10 +124,38 @@ $item = $this->json; $add = $this->add; $cus = $this->cus;
                     <div class="hr hr8 hr-double hr-dotted"></div>
 
                     <div class="row">
+                        <div class="col-sm-12 pull-right">
+                            <h4 class="pull-right">
+                                Sub Total :
+                                <span class="red">$<?php echo $total ?></span>
+                            </h4>
+                        </div>
+                        <div class="col-sm-12 pull-right">
+                            <h4 class="pull-right">
+                                Shipping :
+                                <span class="red">$<?php echo $item[0]['ship_price'] ?></span>
+                            </h4>
+                        </div>
+                        <div class="col-sm-12 pull-right">
+                            <h4 class="pull-right">
+                                Shipping method:
+                                <span class="red">
+                                    <?php
+                                    if($item[0]['service_ship'] == 1){
+                                        echo "Regular";
+                                    }elseif($item[0]['service_ship'] == 2){
+                                        echo "Fast";
+                                    }else{
+                                        echo "Express";
+                                    }
+                                    ?>
+                                </span>
+                            </h4>
+                        </div>
                         <div class="col-sm-5 pull-right">
                             <h4 class="pull-right">
                                 Total amount :
-                                <span class="red">$<?php echo $total ?></span>
+                                <span class="red">$<?php echo $total + $item[0]['ship_price'] ?></span>
                             </h4>
                         </div>
                     </div>

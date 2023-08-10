@@ -24,9 +24,9 @@ class Products extends Controller{
 
     function add(){
         $code = $_REQUEST['code']; $cateid = $_REQUEST['cate_id']; $stock = $_REQUEST['stock'];
-        $price = str_replace(",", "", $_REQUEST['price']); $weight = $_REQUEST['weight'];
+        $price = str_replace(",", "", $_REQUEST['price']); $pounds = $_REQUEST['pounds'];
         $long = $_REQUEST['longs']; $wide = $_REQUEST['wide']; $hight = $_REQUEST['hight'];
-        $title = $_REQUEST['title']; $desc = addslashes($_REQUEST['noidung']);
+        $title = $_REQUEST['title']; $desc = addslashes($_REQUEST['noidung']); $ounces = $_REQUEST['ounces'];
         $tags = implode(", ", $_REQUEST['tags']);
         if($this->model->dupliObj(0, $code) > 0){
             $jsonObj['msg'] = "Mã sản phẩm đã tồn tại";
@@ -35,8 +35,9 @@ class Products extends Controller{
         }else{
             $data = array("code" => $code, "cate_id" => $cateid, "title" => $title, "stock" => $stock,
                         "description" => $desc, "price" => $price, "tags" => $tags, "longs" => $long,
-                        "wide" => $wide, "hight" => $hight, "weight" => $weight, "active" => 1,
-                        "create_at" => date("Y-m-d H:i:s"), 'link_amazone' => '', "alias" => '');
+                        "wide" => $wide, "hight" => $hight, "pounds" => $weight, "active" => 1,
+                        "create_at" => date("Y-m-d H:i:s"), 'link_amazone' => '', "alias" => '',
+                        "ounces" => $ounces);
             $temp = $this->model->addObj($data);
             if($temp){
                 // upload image product
@@ -66,9 +67,9 @@ class Products extends Controller{
 
     function update(){
         $code = $_REQUEST['code']; $cateid = $_REQUEST['cate_id']; $stock = $_REQUEST['stock'];
-        $price = str_replace(",", "", $_REQUEST['price']); $weight = $_REQUEST['weight'];
+        $price = str_replace(",", "", $_REQUEST['price']); $pounds = $_REQUEST['pounds'];
         $long = $_REQUEST['longs']; $wide = $_REQUEST['wide']; $hight = $_REQUEST['hight'];
-        $title = $_REQUEST['title']; $desc = addslashes($_REQUEST['noidung']);
+        $title = $_REQUEST['title']; $desc = addslashes($_REQUEST['noidung']); $ounces = $_REQUEST['ounces'];
         $tags = implode(", ", $_REQUEST['tags']); $id = base64_decode($_REQUEST['idh']);
         $dataedit = json_decode($_REQUEST['data_edit'], true);
         if($this->model->dupliObj($id, $code) > 0){
@@ -78,8 +79,8 @@ class Products extends Controller{
         }else{
             $data = array("cate_id" => $cateid, "title" => $title, "stock" => $stock,
                         "description" => $desc, "price" => $price, "tags" => $tags, "longs" => $long,
-                        "wide" => $wide, "hight" => $hight, "weight" => $weight, "create_at" => date("Y-m-d H:i:s"), 
-                        'link_amazone' => '', "alias" => '');
+                        "wide" => $wide, "hight" => $hight, "pounds" => $pounds, "create_at" => date("Y-m-d H:i:s"), 
+                        'link_amazone' => '', "alias" => '', 'ounces' => $ounces);
             $temp = $this->model->updateObj($id, $data);
             if($temp){
                 // check viec thay doi anh

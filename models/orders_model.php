@@ -8,10 +8,10 @@ class Orders_Model extends Model{
         $result = array();
         $query = $this->db->query("SELECT COUNT(*) AS Total FROM tbl_orders");
         $row = $query->fetchAll();
-        $query = $this->db->query("SELECT id, code, cus_id, create_at, coupon, address_id, comment, status,
+        $query = $this->db->query("SELECT id, code, cus_id, create_at, coupon, address_id, comment, status, service_ship,
                                     auth_code, transid, (SELECT firstname FROM tbl_customer WHERE tbl_customer.id = cus_id)
-                                    AS firstname, (SELECT lastname FROM tbl_customer WHERE tbl_customer.id = cus_id) AS lastname 
-                                    FROM tbl_orders ORDER BY id DESC LIMIT $offset, $rows");
+                                    AS firstname, (SELECT lastname FROM tbl_customer WHERE tbl_customer.id = cus_id) AS lastname, 
+                                    ship_price FROM tbl_orders ORDER BY id DESC LIMIT $offset, $rows");
         $result['total'] = $row[0]['Total'];
         $result['rows'] = $query->fetchAll();
         return $result;
@@ -19,7 +19,8 @@ class Orders_Model extends Model{
 
     function get_detail($id){
         $query = $this->db->query("SELECT id, code, cus_id, create_at, coupon, address_id, comment,
-                                    status, auth_code, transid FROM tbl_orders WHERE id = $id");
+                                    status, auth_code, transid, service_ship, ship_price 
+                                    FROM tbl_orders WHERE id = $id");
         return $query->fetchAll();
     }
 
@@ -38,6 +39,11 @@ class Orders_Model extends Model{
 
     function get_cus($id){
         $query = $this->db->query("SELECT * FROM tbl_customer WHERE id = $id");
+        return $query->fetchAll();
+    }
+
+    function setting_global(){
+        $query = $this->db->query("SELECT * FROM tbl_setting_global WHERE id = 1");
         return $query->fetchAll();
     }
 }

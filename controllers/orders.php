@@ -37,6 +37,8 @@ class Orders extends Controller{
         $this->view->cus = $cus;
         $detail = $this->model->get_detail_order($jsonObj[0]['code']);
         $this->view->detail = $detail;
+        $setting = $this->model->setting_global();
+        $this->view->setting = $setting;
         $this->view->render('orders/invoice');
     }
 }

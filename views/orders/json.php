@@ -10,9 +10,11 @@ $jsonObj = $this->jsonObj; $perpage = $this->perpage; $pages = $this->page;
         <tr role="row">
             <th class="text-center" style="width:20px" rowspan="2">#</th>
             <th class="text-center" style="width:80px" rowspan="2">Mã ĐH</th>
-            <th class="text-center" style="width:180px;" rowspan="2">Ngày đặt đơn</th>
+            <th class="text-center" style="width:150px;" rowspan="2">Ngày đặt đơn</th>
             <th class="text-center" colspan="2">Khách hàng</th>
             <th class="text-center" rowspan="2">Mã giảm giá</th>
+            <th class="text-center" rowspan="2">Dịch vụ ship</th>
+            <th class="text-right" rowspan="2">Phí ship ($)</th>
             <th class="text-center" rowspan="2">Auth code</th>
             <th class="text-center" rowspan="2">TransId</th>
             <th class="text-center" style="width:80px;" rowspan="2">Trạng thái</th>
@@ -42,6 +44,18 @@ $jsonObj = $this->jsonObj; $perpage = $this->perpage; $pages = $this->page;
             <td class="text-left"><?php echo $row['firstname'] ?></td>
             <td class="text-left"><?php echo $row['lastname'] ?></td>
             <td class="text-center"><?php echo $row['coupon'] ?></td>
+            <td class="text-center">
+                <?php
+                if($row['service_ship'] == 1){
+                    echo 'Regular (Bình thường)';
+                }elseif($row['service_ship'] == 2){
+                    echo '<span class="label label-success">Fast (Nhanh)</span>';
+                }else{
+                    echo '<span class="label label-danger">Express ( Siêu nhanh)</span>';
+                }
+                ?>
+            </td>
+            <td class="text-right"><?php echo $row['ship_price'] ?></td>
             <td class="text-center"><?php echo $row['auth_code'] ?></td>
             <td class="text-center"><?php echo $row['transid'] ?></td>
             <td class="text-center">

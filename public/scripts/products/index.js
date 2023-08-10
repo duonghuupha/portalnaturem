@@ -26,7 +26,7 @@ function edit(idh, code){
         $('#code').val(data.code); $('#cate_id').val(data.cate_id).trigger('change');
         $('#stock').val(data.stock); $('#price').val(CurrencyFormatted(data.price));
         $('#longs').val(data.longs); $('#wide').val(data.wide); $('#hight').val(data.hight);
-        $('#weight').val(data.weight);
+        $('#pounds').val(data.pounds); $('#ounces').val(data.ounces);
         /*************************************************************************** */
         $('#title').val(data.title);CKEDITOR.instances['description'].setData(data.description);
         var val_tags = data.tags.split(', '); var $tag_obj = $('.form-field-tags').data('tag');

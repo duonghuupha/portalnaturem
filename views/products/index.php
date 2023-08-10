@@ -117,10 +117,16 @@
                             </div>
                             <div class="col-xs-12">
                                 <div class="form-group">
-                                    <label for="form-field-username">Cân nặng của sản phẩm (gram)</label>
+                                    <label for="form-field-username">Cân nặng của sản phẩm (pounds / ounces)</label>
                                     <div>
-                                        <input type="text" id="weight" name="weight" required=""
-                                        placeholder="Cân nặng của sản phẩm" style="width:100%" onkeypress="validate(event)"/>
+                                        <div class="col-xs-6">
+                                            <input type="text" id="pounds" name="pounds" required=""
+                                            placeholder="Pounds" style="width:100%" onkeypress="validate(event)"/>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <input type="text" id="ounces" name="ounces" required=""
+                                            placeholder="Ounces" style="width:100%" onkeypress="validate(event)"/>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
