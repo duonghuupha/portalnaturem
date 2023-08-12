@@ -11,6 +11,13 @@ require 'libs/Database.php';
 require 'libs/Session.php';
 require 'libs/config/paths.php';
 require 'libs/config/database.php'; 
+/**
+* PHPExcel
+*/
+require 'libs/PHPExcel/PHPExcel/IOFactory.php';
+require "libs/PHPExcel/PHPEXCHelper.php";
+require 'libs/PHPExcel/PHPExcel.php';
+require 'libs/Excel.php';
 $app = new Bootstrap();
 
 ?>

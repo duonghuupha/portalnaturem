@@ -174,5 +174,54 @@ class Products extends Controller{
         }
         rmdir($dir);
     }
+///////////////////////////////////////////////////////////////////////////////////////////////////
+    function update_excel(){
+        if(pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION) == 'xlsx'){
+            $file = $_FILES['file']['tmp_name'];
+            $objFile = PHPExcel_IOFactory::identify($file);
+            $objData = PHPExcel_IOFactory::createReader($objFile);
+            $objData->setReadDataOnly(true);
+            $objPHPExcel = $objData->load($file);
+            $sheet = $objPHPExcel->setActiveSheetIndex(0);
+            $Totalrow = $sheet->getHighestRow();
+            $LastColumn = $sheet->getHighestColumn();
+            $TotalCol = PHPExcel_Cell::columnIndexFromString($LastColumn);
+            for ($i = 5; $i <= $Totalrow; $i++) {
+                for ($j = 1; $j < $TotalCol; $j++) {
+                    //$data[$i - 2][$j] = $sheet->getCellByColumnAndRow($j, $i)->getValue();;
+                    if($j == 1){
+                        $code = $sheet->getCellByColumnAndRow($j, $i)->getValue();
+                    }elseif($j == 2){
+                        $title = $sheet->getCellByColumnAndRow($j, $i)->getValue();
+                    }elseif($j == 3){
+                        $price = $sheet->getCellByColumnAndRow($j, $i)->getValue();
+                    }elseif($j == 4){
+                        $longs = $sheet->getCellByColumnAndRow($j, $i)->getValue();
+                    }elseif($j == 5){
+                        $wide = $sheet->getCellByColumnAndRow($j, $i)->getValue();
+                    }elseif($j == 6){
+                        $hight = $sheet->getCellByColumnAndRow($j, $i)->getValue();
+                    }elseif($j == 7){
+                        $weight = $sheet->getCellByColumnAndRow($j, $i)->getValue();
+                    }
+                }
+                // run code
+                $data = array("longs" => round(($longs * 0.393), 3), "wide" => round(($wide * 0.393), 3), 
+                                "hight" => round(($hight * 0.393), 3), 
+                                "pounds" => round(($weight * 0.0022046226), 3), 
+                                "ounces" => 0);
+                $this->model->updateObj_by_code($code, $data);
+                
+            }
+            $jsonObj['msg'] = "Cập nhật dữ liệu thành công";
+            $jsonObj['success'] = true;
+            $this->view->jsonObj = json_encode($jsonObj);
+        }else{
+            $jsonObj['msg'] = "Định dạng file không chính xác";
+            $jsonObj['success'] = false;
+            $this->view->jsonObj = json_encode($jsonObj);
+        }
+        $this->view->render("products/update_excel");
+    }
 }
 ?>

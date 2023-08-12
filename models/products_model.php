@@ -37,7 +37,7 @@ class Products_Model extends Model{
     }
 
     function updateObj_by_code($code, $data){
-        $query = $this->update("tbl_product", $data, "code = $code");
+        $query = $this->update("tbl_product", $data, "code = '$code'");
         return $query;
     }
 

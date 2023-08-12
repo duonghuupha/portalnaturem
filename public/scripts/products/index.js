@@ -132,3 +132,23 @@ function detail(idh){
     $('#detail_view').html(html);
     $('#modal-view').modal('show');
 }
+///////////////////////////////////////////////////////////////////////////////////////////////
+function excel(){
+    $('#modal-excel').modal('show');
+    url = baseUrl + '/products/update_excel';
+}
+
+function update_excel(){
+    var required = $('input,textarea,select').filter('[required]:visible');
+    var allRequired = true;
+    required.each(function(){
+        if($(this).val() == ''){
+            allRequired = false;
+        }
+    });
+    if(allRequired){
+        save_form_modal('#fm-excel', url, '#modal-excel', '#list_data',  baseUrl+'/products/json?page='+page+'&q='+keyword); 
+    }else{
+        show_message("error", "Chưa điền đủ thông tin");
+    }
+}

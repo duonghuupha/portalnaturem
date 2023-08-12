@@ -27,6 +27,10 @@
                             <i class="fa fa-plus"></i>
                             Thêm mới
                         </button>
+                        <button type="button" class="btn btn-success btn-sm" onclick="excel()">
+                            <i class="fa fa-file-excel-o"></i>
+                            Cập nhật file excel
+                        </button>
                     </small>
                 </h1>
             </div><!-- /.page-header -->
@@ -98,19 +102,19 @@
                             </div>
                             <div class="col-xs-12">
                                 <div class="form-group">
-                                    <label for="form-field-username">Kích thước đóng gói sản phẩm (cm)</label>
+                                    <label for="form-field-username">Kích thước đóng gói sản phẩm (inch)</label>
                                     <div>
                                         <div class="col-xs-4">
                                             <input type="text" id="longs" name="longs" required=""
-                                            placeholder="L" style="width:100%" onkeypress="validates(event)"/>
+                                            placeholder="L" style="width:100%" onkeypress="validate(event)"/>
                                         </div>
                                         <div class="col-xs-4">
                                             <input type="text" id="wide" name="wide" required=""
-                                            placeholder="W" style="width:100%" onkeypress="validates(event)"/>
+                                            placeholder="W" style="width:100%" onkeypress="validate(event)"/>
                                         </div>
                                         <div class="col-xs-4">
                                             <input type="text" id="hight" name="hight" required=""
-                                            placeholder="H" style="width:100%" onkeypress="validates(event)"/>
+                                            placeholder="H" style="width:100%" onkeypress="validate(event)"/>
                                         </div>
                                     </div>
                                 </div>
@@ -216,6 +220,47 @@
                 <button class="btn btn-sm btn-danger pull-right" data-dismiss="modal">
                     <i class="ace-icon fa fa-times"></i>
                     Đóng
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!-- End formm don vi tinh-->
+
+<!--Form don vi tinh-->
+<div id="modal-excel" class="modal fade" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog" style="width:30%">
+        <div class="modal-content" id="form">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    Cập nhật thông tin sản phẩm qua file Excel
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form id="fm-excel" method="post" enctype="multipart/form-data">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="form-field-username">
+                                    Lựa chọn file (*.xlsx)
+                                </label>
+                                <div>
+                                    <input type="file" id="file" name="file" required="" class="file_attach"
+                                    placeholder="Lựa chọn file dữ liệu" style="width:100%" />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+                    <i class="ace-icon fa fa-times"></i>
+                    Đóng
+                </button>
+                <button class="btn btn-sm btn-primary pull-right" onclick="update_excel()">
+                    <i class="ace-icon fa fa-save"></i>
+                    Ghi dữ liệu
                 </button>
             </div>
         </div><!-- /.modal-content -->
