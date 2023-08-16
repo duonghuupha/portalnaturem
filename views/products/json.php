@@ -32,7 +32,7 @@ $jsonObj = $this->jsonObj; $perpage = $this->perpage; $pages = $this->page;
             <td><?php echo $row['title'] ?></td>
             <td class="text-left"><?php echo $row['category'] ?></td>
             <td class="text-center"><?php echo $row['stock'] ?></td>
-            <td class="text-right"><?php echo number_format($row['price']) ?></td>
+            <td class="text-right"><?php echo $row['price'] ?></td>
             <td class="text-center">
                 <?php
                 if($row['active'] == 1){
