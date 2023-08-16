@@ -43,7 +43,7 @@ class Products extends Controller{
                 // upload image product
                 $dir = DIR_UPLOAD.'/images/product/'.$code;
                 if(!file_exists($dir)){ // check exit dir
-                    mkdir($dir, 777); // create folder 
+                    mkdir($dir, 755); // create folder 
                 }
                 for($i = 1; $i <= 6; $i++){
                     if($_FILES['image_'.$i]['name'] != ''){ // check image 
@@ -95,7 +95,7 @@ class Products extends Controller{
                 // upload image product
                 $dir = DIR_UPLOAD.'/images/product/'.$code;
                 if(!file_exists($dir)){ // check exit dir
-                    mkdir($dir, 777); // create folder 
+                    mkdir($dir, 755); // create folder 
                 }
                 for($i = 1; $i <= 6; $i++){
                     if($_FILES['image_'.$i]['name'] != ''){ // check image 
