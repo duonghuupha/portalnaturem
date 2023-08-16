@@ -87,7 +87,7 @@ class Products extends Controller{
                 foreach($dataedit as $row){
                     if($row['status'] == 1){// cos thay doi
                         // thuc hien xoa anh trong folder
-                        @unlink(DIR_UPLOAD.'/images/product/'.$code.'/'.$row['image']);
+                        unlink(DIR_UPLOAD.'/images/product/'.$code.'/'.$row['image']);
                         // xoa ban ghi trong database
                         $this->model->delObj_image($row['id']);
                     }
