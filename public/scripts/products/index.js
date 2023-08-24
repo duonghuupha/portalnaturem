@@ -38,6 +38,8 @@ function edit(idh, code){
         for(var i = 0; i < data.length; i++){
             $('#img_'+(i+1)).attr('src', baseUrl + '/public/images/product/'+code+'/'+data[i].image);
             $('#image_'+(i+1)).attr('data-id', data[i].id);
+            $('#btn_img_'+(i+1)).find(".remove").attr('onclick', 'remove_img_edit('+(i+1)+', '+data[i].id+')').css('display', 'inline-block');
+            $('#btn_img_'+(i+1)).find('.ace-file-container').css('right', '16px');
         }
         data_image_edit(data);
     });
@@ -117,6 +119,16 @@ function change_function_for_remove_image(number){
 
 function remove_img(number){
     $('#img_'+number).attr('src', baseUrl + '/styles/images/noimg.jpg');
+    console.log(data_img);
+    
+}
+
+function remove_img_edit(number, idh){
+    $('#img_'+number).attr('src', baseUrl + '/styles/images/noimg.jpg');
+    $('#btn_img_'+(number)).find(".remove").css('display', 'none');
+    $('#btn_img_'+(number)).find('.ace-file-container').css('right', '0');
+    var objIndex = data_img.findIndex(item => item.id == idh);
+    data_img[objIndex].status = 1;
 }
 
 function data_image_edit(json){
